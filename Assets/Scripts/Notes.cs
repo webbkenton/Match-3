@@ -1,0 +1,70 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Notes : MonoBehaviour
+{
+
+    /*--Imediate Needs--
+
+    Create an Ability manager Script and attach it to each one of the ability icons. Create Ability SO's that include things like ability name and cost
+    Still need to figure out where to put the ability effect. Could try doing if statements in the SO to see if that works.
+    Then we call the abilitymanager from the battleManager.
+
+    //Fixed// Abilities can currently be used when the board is not settled. This breaks the board. Need to only allow abilities if boardstate = move.
+    If 2 matches are made at the same time. Checkforbombs() is not happening.
+    Need to make Enemy attack sound plays during enemy attack.
+    //Fixed//Currently not detecting matches on board after a match is destoryed...
+    //Fixed//Not sure exactly why but the Delaytimer variable that was created was preventing the MatchesOnBoard() method from being called. //Fixed//
+
+    **Do not overlap UI Elements, Disable certain UI Features, Uncheck Raycast to allow clicking behind a UI element**
+
+    Need to make a UI Object for the enemy health bar.
+    Need to make a UI Object for player health bar
+    Need to make a script that manages the currency for the player.
+    Need to add a method() that checks what the TileType is when it is destoyed and Then uses the effect of that tile Type.
+    //Complete// Need To Get better Fonts and Text Styles. Looks very blocky right now.//Complete//
+    Long Term -- Consider adding a small shake effect to the Enemy image when the enemy is hit with enough Damage.
+    //Complete// Need to add buttons to the UI Image. //Complete//
+    Create methods for what each one of the buttons should do.
+    Enemies will need to be Scriptable object that include info like total health and level.
+
+    --Imediate Ends--*/
+
+    /* -- Game Idea Needs --
+     * Instead of Destorying a match 4 or 5 Have them lerp to the currentIcon.position
+     * Recognize the type of Tile Used during the match Detected
+     * Use Gem Tiles as Currency and Damage.
+     * Establish an HP Bar for the player and Enemy.
+     * Establish Damage Value for each type of tile.
+     * Eventually create Modifiers for Damage Value.
+     --Game Needs Ends --*/
+
+    /* -- Bugs That Need Fixed --
+     * Cascading tiles do not create bombs corectly.
+     * Sometimes the hint indicator gives out bad hints. And incidactes nearby tile instead of the tile to be moved.
+     * Column/row bombs do not chain with Adjacent bombs
+     * The Adjacent bomb particle effect has a 1second Delay before it starts.
+     * Shuffle runs before the board Refills. The shuffle() may need to be moved
+     * Shuffle can happen while the board is refilling which will then glitch the board. Shuffle()Needs to be delayed.
+     * The current "TypeBomb" system sucks. Needs to be updated to replace the entire Icon.
+     * Drag System feels "Clunky" seems unresponsive and not smoothe
+     * Star particle still not perminant
+     
+     -- End of Bugs That Need Fixed*/
+
+
+    //1.)Need to Chain Bombs
+    //2.)Need to AutoGenerate LockedTiles
+    //3.)Need to come up with Damages for Each Tile break
+    //4.)Lots of other stuff.
+    //5.)Ask the user to turn hintmanager on/off in settings.
+    //6.)Need to reset the hint timer after each move. Timer goes off every 10 seconds no matter what.
+    //7.)Score does not accurately score Match4
+    //8.)//Fixed// Issue with Matches not being destoryed correctly After adding buf fixes. //FIXED//
+    //9.)Need to create a system that replaces TypeBomb Tiles when created.
+    
+
+    //1.)Possible Enemy mechanic: Use the Shuffle Board Every 3 or 4 Turns
+    //2.)Possible Enemy Mechanic: Randomly Creating Destroyable tiles- Set turn limit to Destroy before Damage.
+}

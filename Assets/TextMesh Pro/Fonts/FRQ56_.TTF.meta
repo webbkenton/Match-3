@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 5d0c28700267720418c5284e55c131b0
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: FrizQuadrataCTT
+  fontNames:
+  - FrizQuadrataCTT
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 938bfc514ee5f504eb6b78158c8f8452, type: 3}
+  - {fileID: 12800000, guid: 85f994ddce3bfab47957d91784e64f4d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
