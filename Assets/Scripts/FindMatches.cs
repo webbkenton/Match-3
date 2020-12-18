@@ -20,6 +20,7 @@ public class FindMatches : MonoBehaviour
         StartCoroutine(FindAllMatchesCo());
     }
 
+
     private List<GameObject> IsAdjacentBomb(Icon icon1, Icon icon2, Icon icon3)
     {
         List<GameObject> currentIcons = new List<GameObject>();

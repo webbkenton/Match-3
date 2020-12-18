@@ -92,6 +92,11 @@ public class Board : MonoBehaviour
             }
         }
     }
+    private void Update()
+    {
+        //CheckToMakeMoreBombs();
+    }
+
     private void Setup()
     {
         //GenerateBoardTiles();
@@ -128,6 +133,21 @@ public class Board : MonoBehaviour
         }
         
     }
+
+    /*private void KeepChecking()
+    {
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                if (allIcons[i, j].GetComponent<Icon>().isMatched != false)
+                {
+                    DestroyMatches();
+                }
+            }
+        }
+    }*/
+
 
     private bool MatchesAt(int column, int row, GameObject piece)
     {
@@ -233,12 +253,150 @@ public class Board : MonoBehaviour
         }
         return 0;
     }
+
+    private void CheckToMakeMoreBombs()
+    {
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                if (allIcons[i, j].GetComponent<Icon>() == currentIcon)
+                {
+                    GameObject currentObject = allIcons[i, j];
+                    if (findMatches.currentMatches.Contains(currentObject))
+                    {
+                        CheckToMakeBombs();
+                    }
+                }
+                else
+                {
+                    Debug.Log("No Current Icon");
+                    GameObject matchedObject = findMatches.currentMatches[0];
+                    Icon matchedIcon = matchedObject.GetComponent<Icon>();
+
+                    List<GameObject> matchCopy = findMatches.currentMatches as List<GameObject>;
+                    int column = matchedIcon.column;
+                    int row = matchedIcon.row;
+                    int columnMatch = 0;
+                    int rowMatch = 0;
+                    //Cycle though the remaining tiles
+                    for (int k = 0; k < matchCopy.Count; k++)
+                    {
+                        Icon nextIcon = matchCopy[k].GetComponent<Icon>();
+                        if (nextIcon == matchedIcon)
+                        {
+                            continue;
+                        }
+                        if (nextIcon.column == matchedIcon.column && nextIcon.CompareTag(matchedIcon.tag))
+                        {
+                            columnMatch++;
+                        }
+                        if (nextIcon.row == matchedIcon.row && nextIcon.CompareTag(matchedIcon.tag))
+                        {
+                            rowMatch++;
+                        }
+                    }
+                    //Return 3 if Adjacent
+                    //Return 2 if Star
+                    //Return 1 if Type Bomb
+                    if (columnMatch == 4 || rowMatch == 4)
+                    {
+                        if (currentIcon == null)
+                        {
+                            if (matchedIcon != null)
+                            {
+                                if (matchedIcon.isMatched)
+                                {
+                                    if (!matchedIcon.isTypeBomb)
+                                    {
+                                        matchedIcon.isMatched = false;
+                                        matchedIcon.MakeTypeBomb();
+                                        battleManger.EnemyDamaged();
+                                    }
+                                }
+                                /*else
+                                {
+                                    if (currentIcon.otherIcon != null)
+                                    {
+                                        Icon otherIcon = currentIcon.otherIcon.GetComponent<Icon>();
+                                        if (otherIcon.isMatched)
+                                        {
+                                            if (!otherIcon.isTypeBomb)
+                                            {
+                                                otherIcon.isMatched = false;
+                                                otherIcon.MakeTypeBomb();
+                                                battleManger.EnemyDamaged();
+                                            }
+                                        }
+                                    }
+                                }*/
+                            }
+                        }
+
+                    }
+                    else if (columnMatch >= 2 && rowMatch >= 2)
+                    {
+                        if (columnMatch < 4 || rowMatch < 4)
+                        {
+                            if (currentIcon == null)
+                            {
+                                if (matchedIcon != null)
+                                {
+                                    if (matchedIcon.isMatched)
+                                    {
+                                        matchedIcon.isMatched = false;
+                                        matchedIcon.MakeStarBomb();
+                                        battleManger.EnemyDamaged();
+                                        //Debug.Log("Star Bomb Made");
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (columnMatch >= 3 || rowMatch >= 3)
+                    {
+                        if (columnMatch < 4 || rowMatch < 4)
+                        {
+                            if (columnMatch == 3 || rowMatch == 3)
+                            {
+                                if (currentIcon == null)
+                                {
+                                    if (matchedIcon != null)
+                                    {
+                                        if (matchedIcon.isMatched)
+                                        {
+                                            if (!matchedIcon.isAdjacentBomb)
+                                            {
+                                                matchedIcon.isMatched = false;
+                                                matchedIcon.MakeAdjacentBomb();
+                                                battleManger.EnemyDamaged();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+                        
+                    
+
+                
+            
+
+         
+    
     private void CheckToMakeBombs()
     {
         //How many objects are in Findmatches() currentMatches()
         if (findMatches.currentMatches.Count > 3)
         {
             //What type of match
+            //So the reason we dont make matches Is because we are only checking currentIcon. During fillBoard we need to check every icon.
             int typeOfMatch = ColumnOrRow();
             if (typeOfMatch == 1)
             {
@@ -394,7 +552,7 @@ public class Board : MonoBehaviour
         }
         else if (allIcons[column, row].tag == "Defend")
         {
-            //Defending bool == true;
+            battleManger.defending = true;
             //if(Defending){enemy damge -1}
             soundManager.PlayDefend();
             currencyManager.IncreaseCurrency(1);
@@ -423,9 +581,10 @@ public class Board : MonoBehaviour
     public void DestroyMatches()
     {
         //Debug.Log("Checking For Bombs");
-        if (findMatches.currentMatches.Count >= 3)
+        if (findMatches.currentMatches.Count >= 3) //Findmatches.count is > 3 so destroy matches should have been called
         {
             CheckToMakeBombs();
+            CheckToMakeMoreBombs();
         }
         findMatches.currentMatches.Clear();
         for (int i = 0; i < width; i++)

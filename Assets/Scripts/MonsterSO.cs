@@ -15,7 +15,8 @@ public class MonsterSO : ScriptableObject
     public MonsterType monsterType;
     public string monsterName;
     public int monsterHealth;
-    public int monsterValue;
+    public int monsterKillValue;
+    public int monsterKillXP;
     public Sprite monsterImage;
     public int rageCounter;
     public AudioClip monsterNoise;

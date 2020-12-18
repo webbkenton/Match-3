@@ -20,6 +20,9 @@ TagManager:
   - AbilityEffect
   - AttackParticle
   - BattleManager
+  - CurrencyManager
+  - Claim
+  - Ability
   layers:
   - Default
   - TransparentFX

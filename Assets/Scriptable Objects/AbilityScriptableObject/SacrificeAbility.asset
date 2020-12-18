@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996a2e6470056db4788e103226b8ed2f, type: 3}
   m_Name: SacrificeAbility
   m_EditorClassIdentifier: 
+  abilityDescription: Cost 10AP. Deal 5 damage to the player and 30 Damage to the
+    enemy. 5 turn CD
   abilityIcon: {fileID: 21300000, guid: 13fa90d92e6ab914ca1624e579e2b9a1, type: 3}
   abilityCost: 10
   abilityName: Sacrifice
   abilityType: 5
+  cooldown: 0
+  coolDownTime: 5

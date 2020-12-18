@@ -1,6 +1,8 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AbilityHolder
+    - AbilitySO
     - BackgroundTile
     - BattleManger
     - Board
@@ -37,10 +39,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -72,6 +72,8 @@ ScriptsOnlyBuild:
     - Class: 48
       Script: {instanceID: 0}
     - Class: 49
+      Script: {instanceID: 0}
+    - Class: 58
       Script: {instanceID: 0}
     - Class: 61
       Script: {instanceID: 0}
@@ -110,33 +112,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12048}
     - Class: 114
-      Script: {instanceID: 12202}
+      Script: {instanceID: 12120}
     - Class: 114
-      Script: {instanceID: 12242}
+      Script: {instanceID: 12204}
     - Class: 114
-      Script: {instanceID: 12610}
+      Script: {instanceID: 12244}
     - Class: 114
-      Script: {instanceID: 12622}
+      Script: {instanceID: 12612}
     - Class: 114
-      Script: {instanceID: 12824}
+      Script: {instanceID: 12624}
     - Class: 114
-      Script: {instanceID: 13112}
+      Script: {instanceID: 12696}
     - Class: 114
-      Script: {instanceID: 13130}
+      Script: {instanceID: 12828}
     - Class: 114
-      Script: {instanceID: 13474}
+      Script: {instanceID: 13116}
     - Class: 114
-      Script: {instanceID: 13548}
+      Script: {instanceID: 13134}
     - Class: 114
-      Script: {instanceID: 13708}
+      Script: {instanceID: 13478}
     - Class: 114
-      Script: {instanceID: 13862}
+      Script: {instanceID: 13552}
     - Class: 114
-      Script: {instanceID: 13994}
+      Script: {instanceID: 13712}
     - Class: 114
-      Script: {instanceID: 14022}
+      Script: {instanceID: 13866}
     - Class: 114
-      Script: {instanceID: 14034}
+      Script: {instanceID: 13998}
+    - Class: 114
+      Script: {instanceID: 14026}
+    - Class: 114
+      Script: {instanceID: 14038}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -312,7 +318,7 @@ ScriptsOnlyBuild:
     className: GridLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: c002e0fcbf3236c332d1b00ac216d46f
+      Hash: 6c5ba07a8035bebdaa2682df9c67e3c6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleManger
@@ -424,6 +430,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Shadow
+  - hash:
+      serializedVersion: 2
+      Hash: ead34904d30109864c1d3cec81577c9b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AbilitySO
   - hash:
       serializedVersion: 2
       Hash: 303ad70ce203ad874efe2965d0fbcff9
@@ -538,6 +550,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SpriteAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: f8a6e74bf5f87a0c4d724629f169c42d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AbilityHolder
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -732,7 +750,7 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
-      Hash: ad1b578d85bccd7e63875effcb7107fa
+      Hash: 67ce74096dab3551efc7e65fd9785054
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MonsterSO
@@ -853,4 +871,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainMatch3.unity
-  playerPath: C:/Users/Webb/Desktop/Match3RPG V0.7/Match 3.exe
+  playerPath: C:/Users/Webbk/Desktop/Match3/Match 3.exe

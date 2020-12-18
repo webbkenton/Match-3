@@ -31,6 +31,7 @@ public class HintManager : MonoBehaviour
     List<GameObject> FindAllMatches()
     {
         List<GameObject> possibleMoves = new List<GameObject>();
+        //Creates a List of all tiles, then checks that list against SwitchAndCheck()
         for (int i = 0; i < board.width; i++)
         {
             for (int j = 0; j < board.height; j++)

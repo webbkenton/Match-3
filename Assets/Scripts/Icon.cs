@@ -25,7 +25,7 @@ public class Icon : MonoBehaviour
 
 
     public float swipeAngle = 0;
-    public float swipeResist = .5f;
+    public float swipeResist = .35f;
 
     public bool isTypeBomb;
     //public bool isColumnBomb;
@@ -37,6 +37,7 @@ public class Icon : MonoBehaviour
     public GameObject starBomb;
     public GameObject typeBomb;
     public GameObject adjacentMarker;
+    private BattleManger battleManger;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,7 @@ public class Icon : MonoBehaviour
         hintManager = FindObjectOfType<HintManager>();
         board = GameObject.FindWithTag("Board").GetComponent<Board>();
         findMatches = FindObjectOfType<FindMatches>();
+        battleManger = GameObject.FindGameObjectWithTag("BattleManager").GetComponent<BattleManger>();
         //isColumnBomb = false;
         //isRowBomb = false;]
         isStarBomb = false;
@@ -153,6 +155,7 @@ public class Icon : MonoBehaviour
             else
             {
                 board.DestroyMatches();
+                battleManger.CountTurn();
 
             }
             //otherIcon = null;
@@ -178,6 +181,7 @@ public class Icon : MonoBehaviour
         {
             finalTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             CalculateAngle();
+            
         }
     }
 

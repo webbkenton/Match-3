@@ -6,6 +6,7 @@ using System.Linq;
 
 public class BattleManger : MonoBehaviour
 {
+    public bool defending;
     public MonsterSO monsterSO;
     private MonsterSO.MonsterType monsterType;
     public Text monsterName;
@@ -29,10 +30,6 @@ public class BattleManger : MonoBehaviour
     public AudioSource monsterSound;
     public Text playerHealth;
     public Text playerAbilityAmount;
-    //public Image ability1;
-    //public Image ability2;
-    //public Image ability3;
-    //private int abilityCost;
     private GameObject enemy;
     public GameObject slashEffect;
     public GameObject playerDamagedPortrait;
@@ -40,24 +37,31 @@ public class BattleManger : MonoBehaviour
     public GameObject abilityEffect;
     public GameObject playerDamagedEffect;
     private SoundManager soundManager;
+    private CurrencyManager currencyManager;
     public GameObject playerImage;
+    public int turnCounter;
     private Vector2 playerImageLocation;
     public GameObject player;
-    //public GameObject[,] icons;
-    //private int iconEffectValue;
-    // Start is called before the first frame update
+    public Text moveCounterText;
+    public AbilityHolder[] abilityHolder;
+
+    public Text monsterKillValue;
+    public Text monsterKillXP;
+    public int monsterValue;
+    public int monsterXP;
+
+    public int playerXP;
+
+
     void Start()
     {
+        currencyManager = GameObject.FindGameObjectWithTag("CurrencyManager").GetComponent<CurrencyManager>();
+        turnCounter = 0;
         playerImageLocation = new Vector2(-4f, 5.5f);
-        //ability1.color = new Color (.5f, .5f, .5f, 1f);
-        //ability2.color = new Color(.5f, .5f, .5f, 1f);
-        //ability3.color = new Color(.5f, .5f, .5f, 1f);
-        //abilityCost = 40;
-
+        abilityHolder = FindObjectsOfType<AbilityHolder>();
         enemy = GameObject.FindGameObjectWithTag("Enemy");
         board = FindObjectOfType<Board>();
         soundManager = FindObjectOfType<SoundManager>();
-        //iconEffectValue = board.currentIcon.GetComponent<IconSO>().EffectValue;
         monsterType = monsterSO.monsterType;
         monsterName.text = monsterSO.monsterName;
         monsterHealth = monsterSO.monsterHealth;
@@ -66,6 +70,8 @@ public class BattleManger : MonoBehaviour
         monsterHealthBar.maxValue = monsterHealth;
         monsterSound.clip = monsterSO.monsterNoise;
         monsterSound.Play();
+        monsterValue = monsterSO.monsterKillValue;
+        monsterXP = monsterSO.monsterKillXP;
 
     }
 
@@ -79,9 +85,34 @@ public class BattleManger : MonoBehaviour
         {
             endPanel.SetActive(true);
         }
-        //AbilityColor();
+        moveCounterText.text = turnCounter.ToString();
     }
 
+    private void Victory()
+    {
+        monsterValue = Random.Range(11, monsterSO.monsterKillValue);
+        monsterXP = Random.Range(100, monsterSO.monsterKillXP);
+        monsterKillValue.text = monsterValue.ToString();
+        monsterKillXP.text = monsterXP.ToString();
+
+    }
+    public void ClaimVictory()
+    {
+        currencyManager.currencyAmount += monsterValue;
+        playerXP += monsterXP;
+        GameObject.FindGameObjectWithTag("Claim").GetComponent<Button>().enabled = false;
+    }
+    public void CountTurn()
+    {
+            turnCounter++;
+        for (int i = 0; i < abilityHolder.Length; i++)
+        {
+            if (abilityHolder[i].currentCount != 0)
+            {
+                abilityHolder[i].currentRemainder = turnCounter - abilityHolder[i].currentCount;
+            }
+        }
+    }
     private IEnumerator DamagedReset()
     {
         yield return new WaitForSeconds(.5f);
@@ -97,23 +128,6 @@ public class BattleManger : MonoBehaviour
         
 
     }
-    /*private void AbilityColor()
-    {
-        if (playerAbilityBar.value >= abilityCost)
-        {
-            ability1.color = new Color(1f, 1f, 1f, 1f);
-            ability2.color = new Color(1f, 1f, 1f, 1f);
-            ability3.color = new Color(1f, 1f, 1f, 1f);
-        }
-        else
-        {
-            ability1.color = new Color(.5f, .5f, .5f, 1f);
-            ability2.color = new Color(.5f, .5f, .5f, 1f);
-            ability3.color = new Color(.5f, .5f, .5f, 1f);
-        }
-
-    }*/
-
     private IEnumerator SmallDelay()
     {
         soundManager.abilitySound.Play();
@@ -140,13 +154,14 @@ public class BattleManger : MonoBehaviour
         if (board.currentState == GameState.move)
         {
             board.currentState = GameState.wait;
-            manaPotions = GameObject.FindGameObjectsWithTag("Gems");
+            manaPotions = GameObject.FindGameObjectsWithTag("Gem");
             Debug.Log("Array Populated");
             for (int i = 0; i < manaPotions.Length; i++)
             {
                 Instantiate(abilityEffect, manaPotions[i].transform.position, Quaternion.identity);
             }
-            StartCoroutine(SmallDelay()); 
+            StartCoroutine(SmallDelay());
+            
         }
     }
     public void UseHealAbility()
@@ -154,27 +169,20 @@ public class BattleManger : MonoBehaviour
         if (board.currentState == GameState.move)
         {
             board.currentState = GameState.wait;
-            manaPotions = GameObject.FindGameObjectsWithTag("ManaPotion");
-            Debug.Log("Array Populated");
-            for (int i = 0; i < manaPotions.Length; i++)
-            {
-                Instantiate(abilityEffect, manaPotions[i].transform.position, Quaternion.identity);
-            }
-            StartCoroutine(SmallDelay());
+           
         }
     }
     public void UseSacrificeAbility()
     {
         if (board.currentState == GameState.move)
         {
-            board.currentState = GameState.wait;
-            manaPotions = GameObject.FindGameObjectsWithTag("ManaPotion");
-            Debug.Log("Array Populated");
-            for (int i = 0; i < manaPotions.Length; i++)
+            playerHealthBar.value -= 5;
+            monsterHealth -= 30;
+            monsterHealthBar.value += 30;
+            if (monsterHealth <= 0)
             {
-                Instantiate(abilityEffect, manaPotions[i].transform.position, Quaternion.identity);
+                Victory();
             }
-            StartCoroutine(SmallDelay());
         }
     }
 
@@ -193,6 +201,11 @@ public class BattleManger : MonoBehaviour
     {
         //int monsterStartingHealth = monsterHealth;
         monsterHealth -= healthLoss;
+        if (monsterHealth <= 0)
+        {
+            monsterHealthBar.value = monsterHealthBar.minValue;
+            Victory();
+        }
         UpdateBar();
     }
     public void IncreaseMonsterRage(int rageGain)
@@ -219,10 +232,7 @@ public class BattleManger : MonoBehaviour
             //monsterHealthBar.maxValue = monsterHealth;
             monsterHealthBar.value = monsterHealthBar.maxValue - monsterHealth;
             monsterRageBar.value = monsterRageCounter / 10f;
-            if (monsterHealth <= 0)
-            {
-                monsterHealthBar.value = monsterHealthBar.minValue;
-            }
+           
             if (monsterRageBar.value >= 1)
             {
                 //Do Attack
@@ -233,13 +243,25 @@ public class BattleManger : MonoBehaviour
                 attackCounter++;
                 if (attackCounter >= 1)
                 {
-                    playerHealthBar.value = playerHealthBar.value -4f;
-                    player.GetComponent<Animator>().SetBool("Damaged", true);
-                    attackCounter = 0;
+                    if (defending == true)
+                    {
+                        playerHealthBar.value = playerHealthBar.value - 3f;
+                        player.GetComponent<Animator>().SetBool("Damaged", true);
+                        attackCounter = 0;
+                        defending = false;
+                    }
+                    else
+                    {
+                        playerHealthBar.value = playerHealthBar.value - 4f;
+                        player.GetComponent<Animator>().SetBool("Damaged", true);
+                        attackCounter = 0;
+                    }
                 }
                 monsterRageBar.value = 0;
                 monsterRageCounter = monsterRageCounter - 10;
+                
                 StartCoroutine(DestroyParticles());
+               
                 
             }
         }

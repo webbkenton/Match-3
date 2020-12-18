@@ -17,10 +17,11 @@ public class AbilitySO : ScriptableObject
         GreaterSacrifice
     }
 
+    public string abilityDescription;
     public Sprite abilityIcon;
     public int abilityCost;
     public string abilityName;
     public AbilityType abilityType;
-
-
+    public bool cooldown;
+    public int coolDownTime;
 }

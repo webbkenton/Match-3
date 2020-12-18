@@ -15,7 +15,8 @@ MonoBehaviour:
   monsterType: 0
   monsterName: HobGoblin
   monsterHealth: 250
-  monsterValue: 20
+  monsterKillValue: 200
+  monsterKillXP: 500
   monsterImage: {fileID: 21300000, guid: 9c83d7ee5f703814bb09f269838aa81c, type: 3}
   rageCounter: 0
   monsterNoise: {fileID: 8300000, guid: 2bffc6a78a1534549a1ab2124a23ea39, type: 3}

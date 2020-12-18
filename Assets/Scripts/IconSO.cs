@@ -10,7 +10,8 @@ public class IconSO : ScriptableObject
         Health,
         Mana,
         Attack,
-        Currency
+        Currency,
+        Defend
     }
     public int EffectValue;
     public int EffectModifier = 1;
