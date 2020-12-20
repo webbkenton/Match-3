@@ -67,6 +67,11 @@
     <Compile Include="Assets\EnemyController.cs" />
     <Compile Include="Assets\GoldenSkullStudios\2D_Iso_Tileset_Ice-Dungeon\Bonus\Scripts\Simple_Char_Move.cs" />
     <Compile Include="Assets\GoldenSkullStudios\2D_Iso_Tileset_Ice-Dungeon\Bonus\Scripts\Simple_Door_Interaction.cs" />
+    <Compile Include="Assets\MenuScript.cs" />
+    <Compile Include="Assets\MonsterInfo.cs" />
+    <Compile Include="Assets\MoveCounter.cs" />
+    <Compile Include="Assets\OverWorldMap.cs" />
+    <Compile Include="Assets\PlayerTokenMover.cs" />
     <Compile Include="Assets\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\AbilityHolder.cs" />
     <Compile Include="Assets\Scripts\AbilitySO.cs" />
@@ -79,6 +84,7 @@
     <Compile Include="Assets\Scripts\HintManager.cs" />
     <Compile Include="Assets\Scripts\Icon.cs" />
     <Compile Include="Assets\Scripts\IconSO.cs" />
+    <Compile Include="Assets\Scripts\MonsterHolder.cs" />
     <Compile Include="Assets\Scripts\MonsterSO.cs" />
     <Compile Include="Assets\Scripts\Notes.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />

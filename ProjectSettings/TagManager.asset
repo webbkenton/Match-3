@@ -23,6 +23,19 @@ TagManager:
   - CurrencyManager
   - Claim
   - Ability
+  - OverworldObject
+  - Platform1
+  - Platform2
+  - Platform3
+  - Platform4
+  - Platform5
+  - Platform6
+  - Platform8
+  - Platform9
+  - Platform7
+  - Platform10
+  - MoveCounter
+  - PlayerHud
   layers:
   - Default
   - TransparentFX
@@ -62,4 +75,10 @@ TagManager:
     locked: 0
   - name: Floor
     uniqueID: 1929501343
+    locked: 0
+  - name: Player
+    uniqueID: 3693522027
+    locked: 0
+  - name: Walls
+    uniqueID: 3146914939
     locked: 0

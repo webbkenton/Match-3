@@ -48,6 +48,8 @@ public class Board : MonoBehaviour
     private SoundManager soundManager;
     private BattleManger battleManger;
     private CurrencyManager currencyManager;
+
+    public GameObject adjacentParticle;
     //private ScriptableObject iconSO;
     public int[] scoreGoals;
 

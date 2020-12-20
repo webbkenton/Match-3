@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class BattleManger : MonoBehaviour
 {
@@ -52,10 +53,19 @@ public class BattleManger : MonoBehaviour
 
     public int playerXP;
 
+    private MonsterInfo monsterInfo;
+
+    private GameObject playerHudDisplay;
+
+
+
 
     void Start()
     {
+        playerHudDisplay = GameObject.FindGameObjectWithTag("PlayerHud");
         currencyManager = GameObject.FindGameObjectWithTag("CurrencyManager").GetComponent<CurrencyManager>();
+        monsterInfo = GameObject.FindGameObjectWithTag("OverworldObject").GetComponent<MonsterInfo>();
+        monsterSO = monsterInfo.monster;
         turnCounter = 0;
         playerImageLocation = new Vector2(-4f, 5.5f);
         abilityHolder = FindObjectsOfType<AbilityHolder>();
@@ -72,6 +82,7 @@ public class BattleManger : MonoBehaviour
         monsterSound.Play();
         monsterValue = monsterSO.monsterKillValue;
         monsterXP = monsterSO.monsterKillXP;
+        GameObject.Destroy(GameObject.FindGameObjectWithTag("OverworldObject"));
 
     }
 
@@ -88,6 +99,10 @@ public class BattleManger : MonoBehaviour
         moveCounterText.text = turnCounter.ToString();
     }
 
+    private void KeepHud()
+    {
+        DontDestroyOnLoad(playerHudDisplay);
+    }
     private void Victory()
     {
         monsterValue = Random.Range(11, monsterSO.monsterKillValue);
@@ -101,6 +116,9 @@ public class BattleManger : MonoBehaviour
         currencyManager.currencyAmount += monsterValue;
         playerXP += monsterXP;
         GameObject.FindGameObjectWithTag("Claim").GetComponent<Button>().enabled = false;
+        //KeepHud();
+        SceneManager.LoadScene("LevelMap");
+        
     }
     public void CountTurn()
     {
@@ -140,6 +158,7 @@ public class BattleManger : MonoBehaviour
         }
         for (int i = 0; i < manaPotions.Length; i++)
         {
+            manaPotions[i].GetComponent<Icon>().isMatched = true;
             Destroy(manaPotions[i]);
         }
         particles = null;
@@ -154,7 +173,7 @@ public class BattleManger : MonoBehaviour
         if (board.currentState == GameState.move)
         {
             board.currentState = GameState.wait;
-            manaPotions = GameObject.FindGameObjectsWithTag("Gem");
+            manaPotions = GameObject.FindGameObjectsWithTag("Attack");
             Debug.Log("Array Populated");
             for (int i = 0; i < manaPotions.Length; i++)
             {

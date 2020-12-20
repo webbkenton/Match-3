@@ -11,6 +11,10 @@ public class AbilityHolder : MonoBehaviour
     public int currentCount;
     public int currentRemainder;
     public Text abilityDescription;
+    public GameObject abilityReady;
+    public Text abilityReadyText;
+    private bool coolDown;
+
     Ray ray;
     RaycastHit hit;
 
@@ -59,6 +63,14 @@ public class AbilityHolder : MonoBehaviour
         }
         
     }
+
+    IEnumerator ReadyText()
+    {
+        abilityReady.SetActive(true);
+        abilityReadyText.text = abilitySO.abilityName + " Is Ready";
+        yield return new WaitForSeconds(2f);
+        abilityReady.SetActive(false);
+    }    
 
     private void OffCD()
     {
