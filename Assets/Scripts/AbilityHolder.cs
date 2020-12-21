@@ -100,7 +100,7 @@ public class AbilityHolder : MonoBehaviour
         if (abilitySO.abilityType == AbilitySO.AbilityType.Heal)
         {
             Debug.Log("Heal");
-            battleManager.playerHealthBar.value += abilitySO.abilityCost;
+            PersistantData.data.health += abilitySO.abilityCost;
             this.GetComponent<Button>().interactable = false;
             AbilityCooldown();
             board.currentState = GameState.move;
@@ -126,18 +126,18 @@ public class AbilityHolder : MonoBehaviour
         if (abilitySO.abilityType == AbilitySO.AbilityType.Rage && abilitySO.abilityCost <= battleManager.playerAbilityBar.value )//&& abilitySO.coolDownTime >= TurnCounter
         {
             RageAbility();
-            battleManager.playerAbilityBar.value -= abilitySO.abilityCost;
+            PersistantData.data.mana -= abilitySO.abilityCost;
         }
         else if (abilitySO.abilityType == AbilitySO.AbilityType.Heal && abilitySO.abilityCost <= battleManager.playerAbilityBar.value)
         {
             HealAbility();
-            battleManager.playerAbilityBar.value -= abilitySO.abilityCost;
+            PersistantData.data.mana -= abilitySO.abilityCost;
             //battleManager.playerHealthBar.value += abilitySO.healValue;
         }
         else if (abilitySO.abilityType == AbilitySO.AbilityType.Sacrifice && abilitySO.abilityCost <= battleManager.playerAbilityBar.value)
         {
             SacrificeAbility();
-            battleManager.playerAbilityBar.value -= abilitySO.abilityCost;
+            PersistantData.data.mana -= abilitySO.abilityCost;
         }
     }
 }

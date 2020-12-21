@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuPathofRedemption.unity
     guid: d3ae2117174df1645b36ad7a5538c43c
   - enabled: 1
+    path: Assets/Scenes/ChooseYourPath.unity
+    guid: 3e37f451015e72148a31c691cb7778bd
+  - enabled: 1
     path: Assets/Scenes/LevelMap.unity
     guid: 7f7eeb14db4aeca4c8e133ad603fd4d8
   - enabled: 1

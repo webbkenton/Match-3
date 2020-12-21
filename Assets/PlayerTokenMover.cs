@@ -23,6 +23,7 @@ public class PlayerTokenMover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         moveCounter = GameObject.FindGameObjectWithTag("MoveCounter").GetComponent<MoveCounter>();
         platform1 = GameObject.FindGameObjectWithTag("Platform1").GetComponent<Button>();
         platform2 = GameObject.FindGameObjectWithTag("Platform2").GetComponent<Button>();
@@ -47,7 +48,7 @@ public class PlayerTokenMover : MonoBehaviour
         platform10.interactable = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         eventTransform = this.transform;
     }

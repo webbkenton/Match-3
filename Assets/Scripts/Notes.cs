@@ -89,4 +89,5 @@ public class Notes : MonoBehaviour
     //1.)Possible Enemy mechanic: Use the Shuffle Board Every 3 or 4 Turns
     //2.)Possible Enemy Mechanic: Randomly Creating Destroyable tiles- Set turn limit to Destroy before Damage.
     //3.)Increase damage over duration of fight
+    //4.)Disable the players abilities
 }

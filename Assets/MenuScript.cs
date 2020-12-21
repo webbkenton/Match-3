@@ -7,6 +7,6 @@ public class MenuScript : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("LevelMap");
+        SceneManager.LoadScene("ChooseYourPath");
     }
 }

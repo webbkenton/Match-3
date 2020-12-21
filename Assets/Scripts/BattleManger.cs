@@ -62,9 +62,11 @@ public class BattleManger : MonoBehaviour
 
     void Start()
     {
+        playerHealthBar.value = PersistantData.data.health;
+        playerAbilityBar.value = PersistantData.data.mana;
         playerHudDisplay = GameObject.FindGameObjectWithTag("PlayerHud");
         currencyManager = GameObject.FindGameObjectWithTag("CurrencyManager").GetComponent<CurrencyManager>();
-        monsterInfo = GameObject.FindGameObjectWithTag("OverworldObject").GetComponent<MonsterInfo>();
+        monsterInfo = GameObject.FindGameObjectWithTag("CurrentEnemy").GetComponent<MonsterInfo>();
         monsterSO = monsterInfo.monster;
         turnCounter = 0;
         playerImageLocation = new Vector2(-4f, 5.5f);
@@ -82,7 +84,7 @@ public class BattleManger : MonoBehaviour
         monsterSound.Play();
         monsterValue = monsterSO.monsterKillValue;
         monsterXP = monsterSO.monsterKillXP;
-        GameObject.Destroy(GameObject.FindGameObjectWithTag("OverworldObject"));
+        Destroy(GameObject.FindGameObjectWithTag("CurrentEnemy"));
 
     }
 
@@ -90,13 +92,19 @@ public class BattleManger : MonoBehaviour
     {
         monsterHealthText.text = monsterHealth.ToString();
         monsterRageCounterText.text = monsterRageCounter.ToString();
-        playerHealth.text = playerHealthBar.value.ToString();
-        playerAbilityAmount.text = playerAbilityBar.value.ToString();
+        playerHealth.text = PersistantData.data.health.ToString();
+        playerAbilityAmount.text = PersistantData.data.mana.ToString();
         if (monsterHealth <= 0)
         {
             endPanel.SetActive(true);
         }
         moveCounterText.text = turnCounter.ToString();
+
+        if (monsterSO.isBoss)
+        {
+            monsterPicture.transform.localPosition = new Vector2(monsterPicture.transform.position.x, 0);
+            monsterPicture.rectTransform.localScale = new Vector3(1.5f, 1.5f, 0);
+        }
     }
 
     private void KeepHud()
@@ -113,8 +121,8 @@ public class BattleManger : MonoBehaviour
     }
     public void ClaimVictory()
     {
-        currencyManager.currencyAmount += monsterValue;
-        playerXP += monsterXP;
+        PersistantData.data.currency += monsterValue;
+        PersistantData.data.experience += monsterXP;
         GameObject.FindGameObjectWithTag("Claim").GetComponent<Button>().enabled = false;
         //KeepHud();
         SceneManager.LoadScene("LevelMap");
@@ -195,7 +203,7 @@ public class BattleManger : MonoBehaviour
     {
         if (board.currentState == GameState.move)
         {
-            playerHealthBar.value -= 5;
+            PersistantData.data.health -= 5;
             monsterHealth -= 30;
             monsterHealthBar.value += 30;
             if (monsterHealth <= 0)
@@ -264,14 +272,14 @@ public class BattleManger : MonoBehaviour
                 {
                     if (defending == true)
                     {
-                        playerHealthBar.value = playerHealthBar.value - 3f;
+                        PersistantData.data.health = playerHealthBar.value - 3f;
                         player.GetComponent<Animator>().SetBool("Damaged", true);
                         attackCounter = 0;
                         defending = false;
                     }
                     else
                     {
-                        playerHealthBar.value = playerHealthBar.value - 4f;
+                        PersistantData.data.health = playerHealthBar.value - 4f;
                         player.GetComponent<Animator>().SetBool("Damaged", true);
                         attackCounter = 0;
                     }

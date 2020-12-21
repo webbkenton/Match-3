@@ -36,6 +36,7 @@ TagManager:
   - Platform10
   - MoveCounter
   - PlayerHud
+  - CurrentEnemy
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,7 @@ public class MonsterHolder : MonoBehaviour
 { 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        this.gameObject.tag = "CurrentEnemy";
         Debug.Log("Triggered");
         LoadLevel("MainMatch3");
     }

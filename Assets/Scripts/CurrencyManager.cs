@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CurrencyManager : MonoBehaviour
 {
+    public static CurrencyManager currency;
+
     private Board board;
     public Text currencyText;
     public int currencyAmount;
@@ -12,13 +14,13 @@ public class CurrencyManager : MonoBehaviour
     void Start()
     {
         board = FindObjectOfType<Board>();
-        currencyText.text = currencyAmount.ToString();
+        currencyText.text = PersistantData.data.currency.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        currencyText.text = currencyAmount.ToString();
+        currencyText.text = PersistantData.data.currency.ToString();
     }
 
     public void IncreaseCurrency(int currency)

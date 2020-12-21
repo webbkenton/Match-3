@@ -527,7 +527,7 @@ public class Board : MonoBehaviour
         if (allIcons[column, row].tag == "Gem")
         {
             soundManager.PlayGem();
-            currencyManager.IncreaseCurrency(3);
+            PersistantData.data.currency += (3);
         }
         else if (allIcons[column, row].tag == "Attack")
         {
@@ -542,40 +542,40 @@ public class Board : MonoBehaviour
             // Do base attack * 1.5
             soundManager.PlayHeavy();
             battleManger.DecreasMonsterHealth(baseTileValue / 4);
-            currencyManager.IncreaseCurrency(1);
+            PersistantData.data.currency += (1);
             battleManger.IncreaseMonsterRage(1);
         }
         else if (allIcons[column, row].tag == "HealthPotion")
         {
             //restore 1 point each
             soundManager.PlayPotions();
-            battleManger.playerHealthBar.value++;
-            currencyManager.IncreaseCurrency(1);
+            PersistantData.data.health++;
+            PersistantData.data.currency += (1);
         }
         else if (allIcons[column, row].tag == "Defend")
         {
             battleManger.defending = true;
             //if(Defending){enemy damge -1}
             soundManager.PlayDefend();
-            currencyManager.IncreaseCurrency(1);
+            PersistantData.data.currency += (1);
         }
         else if (allIcons[column, row].tag == "ManaPotion")
         {
             //Mana bar +1 point each
             soundManager.PlayPotions();
-            battleManger.playerAbilityBar.value += 4;
-            currencyManager.IncreaseCurrency(1);
+            PersistantData.data.mana += 4;
+            PersistantData.data.currency += (1);
         }
         else if (allIcons[column, row].tag == "Magic")
         {
             soundManager.PlayMagic();
             battleManger.DecreasMonsterHealth(baseTileValue / 10);
-            currencyManager.IncreaseCurrency(1);
+            PersistantData.data.currency += (1);
             battleManger.IncreaseMonsterRage(1);
         }
         else
         {
-            currencyManager.IncreaseCurrency(1);
+            PersistantData.data.currency += (1);
         }
 
 
