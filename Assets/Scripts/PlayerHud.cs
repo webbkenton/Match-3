@@ -32,7 +32,7 @@ public class PlayerHud : MonoBehaviour
         currencyText.text = currency.ToString();
 
         experienceBar.fillAmount = experience / experienceToLevel;
-        Debug.Log(experienceBar.fillAmount);
+        //Debug.Log(experienceBar.fillAmount);
         
     }
 }

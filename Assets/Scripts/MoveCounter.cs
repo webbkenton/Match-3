@@ -8,6 +8,6 @@ public class MoveCounter : MonoBehaviour
 
     public void IncreaseMoveCounter()
     {
-        moveCounter++;
+        PersistantData.data.totalCompleteLevels++;
     }
 }

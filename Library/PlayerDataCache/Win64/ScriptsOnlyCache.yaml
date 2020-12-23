@@ -19,6 +19,7 @@ ScriptsOnlyBuild:
     - MoveCounter
     - OverWorldMap
     - PersistantData
+    - Platform
     - PlayerHud
     - PlayerSelect
     - PlayerTokenMover
@@ -26,11 +27,11 @@ ScriptsOnlyBuild:
     - SoundManager
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
-    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintPaletteClipboard
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
+    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.PaintableSceneViewGrid
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.TileDragAndDropManager
@@ -94,15 +95,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11624}
     - Class: 114
-      Script: {instanceID: 12214}
+      Script: {instanceID: 12216}
     - Class: 114
-      Script: {instanceID: 12842}
+      Script: {instanceID: 12844}
     - Class: 114
-      Script: {instanceID: 13174}
+      Script: {instanceID: 13176}
     - Class: 114
-      Script: {instanceID: 13498}
+      Script: {instanceID: 13500}
     - Class: 114
-      Script: {instanceID: 14020}
+      Script: {instanceID: 14022}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -163,27 +164,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11624}
     - Class: 114
-      Script: {instanceID: 11966}
+      Script: {instanceID: 11764}
     - Class: 114
-      Script: {instanceID: 12128}
+      Script: {instanceID: 11968}
     - Class: 114
-      Script: {instanceID: 12214}
+      Script: {instanceID: 12130}
     - Class: 114
-      Script: {instanceID: 12578}
+      Script: {instanceID: 12216}
     - Class: 114
-      Script: {instanceID: 12616}
+      Script: {instanceID: 12580}
     - Class: 114
-      Script: {instanceID: 12842}
+      Script: {instanceID: 12618}
     - Class: 114
-      Script: {instanceID: 13296}
+      Script: {instanceID: 12844}
     - Class: 114
-      Script: {instanceID: 13498}
+      Script: {instanceID: 13298}
     - Class: 114
-      Script: {instanceID: 13886}
+      Script: {instanceID: 13500}
     - Class: 114
-      Script: {instanceID: 14020}
+      Script: {instanceID: 13888}
     - Class: 114
-      Script: {instanceID: 14100}
+      Script: {instanceID: 14022}
+    - Class: 114
+      Script: {instanceID: 14102}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -191,6 +194,10 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 212
       Script: {instanceID: 0}
@@ -254,35 +261,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11762}
     - Class: 114
-      Script: {instanceID: 11802}
+      Script: {instanceID: 11804}
     - Class: 114
-      Script: {instanceID: 11844}
+      Script: {instanceID: 11846}
     - Class: 114
-      Script: {instanceID: 12010}
+      Script: {instanceID: 12012}
     - Class: 114
-      Script: {instanceID: 12056}
+      Script: {instanceID: 12058}
     - Class: 114
-      Script: {instanceID: 12130}
+      Script: {instanceID: 12132}
     - Class: 114
-      Script: {instanceID: 12214}
+      Script: {instanceID: 12216}
     - Class: 114
-      Script: {instanceID: 12616}
+      Script: {instanceID: 12618}
     - Class: 114
-      Script: {instanceID: 12626}
+      Script: {instanceID: 12628}
     - Class: 114
-      Script: {instanceID: 12638}
+      Script: {instanceID: 12640}
     - Class: 114
-      Script: {instanceID: 12710}
+      Script: {instanceID: 12712}
     - Class: 114
-      Script: {instanceID: 12842}
+      Script: {instanceID: 12844}
     - Class: 114
-      Script: {instanceID: 13498}
+      Script: {instanceID: 13500}
     - Class: 114
-      Script: {instanceID: 13572}
+      Script: {instanceID: 13574}
     - Class: 114
-      Script: {instanceID: 14020}
+      Script: {instanceID: 14022}
     - Class: 114
-      Script: {instanceID: 14048}
+      Script: {instanceID: 14050}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -331,23 +338,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11624}
     - Class: 114
-      Script: {instanceID: 11968}
+      Script: {instanceID: 11970}
     - Class: 114
-      Script: {instanceID: 12214}
+      Script: {instanceID: 12216}
     - Class: 114
-      Script: {instanceID: 12254}
+      Script: {instanceID: 12256}
     - Class: 114
-      Script: {instanceID: 12842}
+      Script: {instanceID: 12844}
     - Class: 114
-      Script: {instanceID: 13132}
+      Script: {instanceID: 13134}
     - Class: 114
-      Script: {instanceID: 13150}
+      Script: {instanceID: 13152}
     - Class: 114
-      Script: {instanceID: 13498}
+      Script: {instanceID: 13500}
     - Class: 114
-      Script: {instanceID: 13732}
+      Script: {instanceID: 13734}
     - Class: 114
-      Script: {instanceID: 14020}
+      Script: {instanceID: 14022}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -475,7 +482,7 @@ ScriptsOnlyBuild:
     className: NetworkIdentity
   - hash:
       serializedVersion: 2
-      Hash: 76aa163ad4115f1ffa0463e6a911add1
+      Hash: f25e414debf43657b75348b58c7cc658
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerTokenMover
@@ -533,6 +540,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleManger
+  - hash:
+      serializedVersion: 2
+      Hash: 1d33cd856fc21eeb4277491799446db4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Platform
   - hash:
       serializedVersion: 2
       Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
@@ -655,7 +668,7 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
-      Hash: 4b4e67220d22e32433adb92d723482e5
+      Hash: 5d877910d34d7247bbdb27e04298af55
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PersistantData
@@ -745,7 +758,7 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
-      Hash: c44e80f1fea7a05282f4771a3c2a028d
+      Hash: 9e89d47790b30acd7a16e5a68c20fa9e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: OverWorldMap
@@ -1009,7 +1022,7 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
-      Hash: be4cdb827cbc855bd745f9a786631cc7
+      Hash: 09a51ee9d51edf804385ee0ac49aa9e9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MonsterSO
@@ -1139,4 +1152,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/ChooseYourPath.unity
   - Assets/Scenes/LevelMap.unity
   - Assets/Scenes/MainMatch3.unity
-  playerPath: C:/Users/Webb/Desktop/Match3RPG V0.10/Match 3.exe
+  playerPath: C:/Users/Webb/Desktop/Match3RPG V0.12/Match 3.exe

@@ -85,6 +85,7 @@ public class BattleManger : MonoBehaviour
         monsterValue = monsterSO.monsterKillValue;
         monsterXP = monsterSO.monsterKillXP;
         Destroy(GameObject.FindGameObjectWithTag("CurrentEnemy"));
+        Destroy(GameObject.FindGameObjectWithTag("OverworldObject"));
 
     }
 
@@ -114,9 +115,10 @@ public class BattleManger : MonoBehaviour
     private void Victory()
     {
         monsterValue = Random.Range(11, monsterSO.monsterKillValue);
-        monsterXP = Random.Range(100, monsterSO.monsterKillXP);
+        monsterXP = monsterSO.monsterKillXP;
         monsterKillValue.text = monsterValue.ToString();
         monsterKillXP.text = monsterXP.ToString();
+        monsterSO.isDefeated = true;
 
     }
     public void ClaimVictory()

@@ -7,34 +7,17 @@ public class OverWorldMap : MonoBehaviour
 {
     private GameObject playerToken;
     public bool objectiveComplete;
+    public Transform playerTransform;
+    private PlayerTokenMover mover;
     void Start()
     {
         playerToken = GameObject.FindGameObjectWithTag("Player");
-    }
-
-    private void Awake()
-    {
-        if (PersistantData.data.completedObject.Contains(this.gameObject))
-        {
-            this.GetComponentInParent<Image>().color = new Color(1f, 1f, 1f, 1f);
-        }
+        mover = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerTokenMover>();
     }
 
     private void Update()
     {
-        if (this.GetComponentInChildren<PlayerTokenMover>())
-        {
-            if (this.GetComponentInChildren<PlayerTokenMover>().eventTransform = this.transform)
-            {
-                this.GetComponentInParent<Image>().color = new Color(1f, 1f, 1f, 1f);
-                objectiveComplete = true;
-                checkComplete();
-            }
-            else
-            {
-                this.GetComponentInParent<Image>().color = new Color(0f, 0f, 0f, 1f);
-            }
-        }
+        playerToken = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void checkComplete()

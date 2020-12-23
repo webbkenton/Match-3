@@ -37,6 +37,8 @@ TagManager:
   - MoveCounter
   - PlayerHud
   - CurrentEnemy
+  - Platform0
+  - ORing
   layers:
   - Default
   - TransparentFX
@@ -71,8 +73,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2186508023
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 2366821081
     locked: 0
   - name: Floor
     uniqueID: 1929501343

@@ -63,33 +63,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\EnemyController.cs" />
     <Compile Include="Assets\GoldenSkullStudios\2D_Iso_Tileset_Ice-Dungeon\Bonus\Scripts\Simple_Char_Move.cs" />
     <Compile Include="Assets\GoldenSkullStudios\2D_Iso_Tileset_Ice-Dungeon\Bonus\Scripts\Simple_Door_Interaction.cs" />
-    <Compile Include="Assets\MenuScript.cs" />
-    <Compile Include="Assets\MonsterInfo.cs" />
-    <Compile Include="Assets\MoveCounter.cs" />
-    <Compile Include="Assets\OverWorldMap.cs" />
-    <Compile Include="Assets\PersistantData.cs" />
-    <Compile Include="Assets\PlayerHud.cs" />
-    <Compile Include="Assets\PlayerSelect.cs" />
-    <Compile Include="Assets\PlayerTokenMover.cs" />
-    <Compile Include="Assets\ScoreManager.cs" />
+    <Compile Include="Assets\Platform.cs" />
     <Compile Include="Assets\Scripts\AbilityHolder.cs" />
     <Compile Include="Assets\Scripts\AbilitySO.cs" />
     <Compile Include="Assets\Scripts\BackgroundTile.cs" />
     <Compile Include="Assets\Scripts\BattleManger.cs" />
     <Compile Include="Assets\Scripts\Board.cs" />
     <Compile Include="Assets\Scripts\CurrencyManager.cs" />
+    <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\FindMatches.cs" />
     <Compile Include="Assets\Scripts\GoalManager.cs" />
     <Compile Include="Assets\Scripts\HintManager.cs" />
     <Compile Include="Assets\Scripts\Icon.cs" />
     <Compile Include="Assets\Scripts\IconSO.cs" />
+    <Compile Include="Assets\Scripts\MenuScript.cs" />
     <Compile Include="Assets\Scripts\MonsterHolder.cs" />
+    <Compile Include="Assets\Scripts\MonsterInfo.cs" />
     <Compile Include="Assets\Scripts\MonsterSO.cs" />
+    <Compile Include="Assets\Scripts\MoveCounter.cs" />
     <Compile Include="Assets\Scripts\Notes.cs" />
+    <Compile Include="Assets\Scripts\OverWorldMap.cs" />
+    <Compile Include="Assets\Scripts\PersistantData.cs" />
+    <Compile Include="Assets\Scripts\PlayerHud.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\PlayerSelect.cs" />
+    <Compile Include="Assets\Scripts\PlayerTokenMover.cs" />
+    <Compile Include="Assets\Scripts\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
