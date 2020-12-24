@@ -39,6 +39,7 @@ TagManager:
   - CurrentEnemy
   - Platform0
   - ORing
+  - Dialog
   layers:
   - Default
   - TransparentFX

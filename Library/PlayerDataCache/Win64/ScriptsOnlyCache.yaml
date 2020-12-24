@@ -27,6 +27,7 @@ ScriptsOnlyBuild:
     - SoundManager
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
+    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintPaletteClipboard
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
@@ -91,19 +92,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11306}
     - Class: 114
-      Script: {instanceID: 11330}
+      Script: {instanceID: 11708}
     - Class: 114
-      Script: {instanceID: 11624}
+      Script: {instanceID: 12002}
     - Class: 114
-      Script: {instanceID: 12216}
+      Script: {instanceID: 12594}
     - Class: 114
-      Script: {instanceID: 12844}
+      Script: {instanceID: 13222}
     - Class: 114
-      Script: {instanceID: 13176}
+      Script: {instanceID: 13554}
     - Class: 114
-      Script: {instanceID: 13500}
+      Script: {instanceID: 13876}
     - Class: 114
-      Script: {instanceID: 14022}
+      Script: {instanceID: 14398}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -156,37 +157,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11306}
     - Class: 114
-      Script: {instanceID: 11308}
+      Script: {instanceID: 11708}
     - Class: 114
-      Script: {instanceID: 11330}
+      Script: {instanceID: 11964}
     - Class: 114
-      Script: {instanceID: 11586}
+      Script: {instanceID: 12002}
     - Class: 114
-      Script: {instanceID: 11624}
+      Script: {instanceID: 12142}
     - Class: 114
-      Script: {instanceID: 11764}
+      Script: {instanceID: 12346}
     - Class: 114
-      Script: {instanceID: 11968}
+      Script: {instanceID: 12508}
     - Class: 114
-      Script: {instanceID: 12130}
+      Script: {instanceID: 12594}
     - Class: 114
-      Script: {instanceID: 12216}
+      Script: {instanceID: 12958}
     - Class: 114
-      Script: {instanceID: 12580}
+      Script: {instanceID: 12996}
     - Class: 114
-      Script: {instanceID: 12618}
+      Script: {instanceID: 13222}
     - Class: 114
-      Script: {instanceID: 12844}
+      Script: {instanceID: 13676}
     - Class: 114
-      Script: {instanceID: 13298}
+      Script: {instanceID: 13876}
     - Class: 114
-      Script: {instanceID: 13500}
+      Script: {instanceID: 14264}
     - Class: 114
-      Script: {instanceID: 13888}
+      Script: {instanceID: 14398}
     - Class: 114
-      Script: {instanceID: 14022}
+      Script: {instanceID: 14438}
     - Class: 114
-      Script: {instanceID: 14102}
+      Script: {instanceID: 14480}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -249,47 +250,47 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11306}
     - Class: 114
-      Script: {instanceID: 11308}
+      Script: {instanceID: 11708}
     - Class: 114
-      Script: {instanceID: 11330}
+      Script: {instanceID: 11832}
     - Class: 114
-      Script: {instanceID: 11454}
+      Script: {instanceID: 11836}
     - Class: 114
-      Script: {instanceID: 11458}
+      Script: {instanceID: 12002}
     - Class: 114
-      Script: {instanceID: 11624}
+      Script: {instanceID: 12140}
     - Class: 114
-      Script: {instanceID: 11762}
+      Script: {instanceID: 12182}
     - Class: 114
-      Script: {instanceID: 11804}
+      Script: {instanceID: 12224}
     - Class: 114
-      Script: {instanceID: 11846}
+      Script: {instanceID: 12390}
     - Class: 114
-      Script: {instanceID: 12012}
+      Script: {instanceID: 12436}
     - Class: 114
-      Script: {instanceID: 12058}
+      Script: {instanceID: 12510}
     - Class: 114
-      Script: {instanceID: 12132}
+      Script: {instanceID: 12594}
     - Class: 114
-      Script: {instanceID: 12216}
+      Script: {instanceID: 12996}
     - Class: 114
-      Script: {instanceID: 12618}
+      Script: {instanceID: 13006}
     - Class: 114
-      Script: {instanceID: 12628}
+      Script: {instanceID: 13018}
     - Class: 114
-      Script: {instanceID: 12640}
+      Script: {instanceID: 13090}
     - Class: 114
-      Script: {instanceID: 12712}
+      Script: {instanceID: 13222}
     - Class: 114
-      Script: {instanceID: 12844}
+      Script: {instanceID: 13876}
     - Class: 114
-      Script: {instanceID: 13500}
+      Script: {instanceID: 13950}
     - Class: 114
-      Script: {instanceID: 13574}
+      Script: {instanceID: 14398}
     - Class: 114
-      Script: {instanceID: 14022}
+      Script: {instanceID: 14426}
     - Class: 114
-      Script: {instanceID: 14050}
+      Script: {instanceID: 14438}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -334,27 +335,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11306}
     - Class: 114
-      Script: {instanceID: 11330}
+      Script: {instanceID: 11708}
     - Class: 114
-      Script: {instanceID: 11624}
+      Script: {instanceID: 12002}
     - Class: 114
-      Script: {instanceID: 11970}
+      Script: {instanceID: 12348}
     - Class: 114
-      Script: {instanceID: 12216}
+      Script: {instanceID: 12594}
     - Class: 114
-      Script: {instanceID: 12256}
+      Script: {instanceID: 12634}
     - Class: 114
-      Script: {instanceID: 12844}
+      Script: {instanceID: 13222}
     - Class: 114
-      Script: {instanceID: 13134}
+      Script: {instanceID: 13512}
     - Class: 114
-      Script: {instanceID: 13152}
+      Script: {instanceID: 13530}
     - Class: 114
-      Script: {instanceID: 13500}
+      Script: {instanceID: 13876}
     - Class: 114
-      Script: {instanceID: 13734}
+      Script: {instanceID: 14110}
     - Class: 114
-      Script: {instanceID: 14022}
+      Script: {instanceID: 14398}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -378,12 +379,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Text
-  - hash:
-      serializedVersion: 2
-      Hash: 7072231382eb3c4871b3dd75ad0227e1
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Slider
   - hash:
       serializedVersion: 2
       Hash: 4bc4346a71a8df53a6b106f68ef3a190
@@ -1124,6 +1119,12 @@ ScriptsOnlyBuild:
     className: HintManager
   - hash:
       serializedVersion: 2
+      Hash: 7072231382eb3c4871b3dd75ad0227e1
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Slider
+  - hash:
+      serializedVersion: 2
       Hash: a325152ad9563ed900af221c132fea36
     assemblyName: UnityEngine.Advertisements.dll
     namespaceName: UnityEngine.Advertisements.Utilities
@@ -1152,4 +1153,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/ChooseYourPath.unity
   - Assets/Scenes/LevelMap.unity
   - Assets/Scenes/MainMatch3.unity
-  playerPath: C:/Users/Webb/Desktop/Match3RPG V0.12/Match 3.exe
+  playerPath: C:/Users/Webbk/Desktop/Match3RPG V0.11/Match 3.exe

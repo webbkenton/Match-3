@@ -21,7 +21,7 @@ public class PlayerTokenMover : MonoBehaviour
     public GameObject playerToken;
     public MoveCounter moveCounter;
     private Transform tokenTransform;
-    private Transform tokenRotation;
+    private GameObject dialogPanel;
 
     private Image[] p0;
     private Image[] p1;
