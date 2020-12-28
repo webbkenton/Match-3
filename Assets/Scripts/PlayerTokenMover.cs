@@ -19,9 +19,11 @@ public class PlayerTokenMover : MonoBehaviour
     public Image platform0;
 
     public GameObject playerToken;
-    public MoveCounter moveCounter;
+    //public GameObject playerRoot;
+    //public MoveCounter moveCounter;
     private Transform tokenTransform;
     private GameObject dialogPanel;
+    public GameObject tutorialDialog;
 
     private Image[] p0;
     private Image[] p1;
@@ -35,18 +37,43 @@ public class PlayerTokenMover : MonoBehaviour
     private Image[] p9;
     private Image[] p10;
 
+    private bool p0Objective;
+    private bool p1Objective;
+    private bool p2Objective;
+    private bool p3Objective;
+    private bool p4Objective;
+    private bool p5Objective;
+    private bool p6Objective;
+    private bool p7Objective;
+    private bool p8Objective;
+    private bool p9Objective;
+    private bool p10Objective;
+
+
 
     // Start is called before the first frame update
 
     private void Awake()
     {
         FixToken();
+        //DontDestroyOnLoad(playerRoot);
+    }
+
+    IEnumerator NeedASecond()
+    {
+        if (playerToken != null)
+        {
+            if(playerToken != PersistantData.data.playerToken)
+            Destroy(playerToken);
+        }
+        yield return new WaitForSeconds(.5f);
     }
     private void FixToken()
     {
         playerToken.GetComponent<Animator>().enabled = true;
         playerToken.GetComponent<PlayerTokenMover>().enabled = true;
         playerToken.GetComponent<CapsuleCollider2D>().enabled = true;
+        //playerToken = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void PlacePeice()
@@ -55,108 +82,189 @@ public class PlayerTokenMover : MonoBehaviour
         {
             if (PersistantData.data.totalCompleteLevels == 1)
             {
-                Destroy(GameObject.FindGameObjectWithTag("Player"));
-                Instantiate(playerToken, platform1.GetComponent<Platform>().playerPlatForm.transform);
-                playerToken.transform.position = tokenTransform.position;
-                playerToken.transform.rotation = tokenTransform.rotation;
-                playerToken.transform.localScale = tokenTransform.localScale;
-                FixToken();
+                if (playerToken.transform.position != tokenTransform.position)
+                {
+                    //Debug.Log("Instantiate");
+                    Destroy(GameObject.FindGameObjectWithTag("Player"));
+                    //StartCoroutine(NeedASecond());
+                    //PersistantData.data.playerToken.SetActive(true);
+                    //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken = this.gameObject;
+                    playerToken.transform.SetParent(platform1.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken.transform.position = tokenTransform.position;
+                    playerToken.transform.rotation = tokenTransform.rotation;
+                    playerToken.transform.localScale = tokenTransform.localScale;
+                    FixToken();
+                }
                 PersistantData.data.inEvent = false;
             }
+
             if (PersistantData.data.totalCompleteLevels == 2)
             {
-                Destroy(GameObject.FindGameObjectWithTag("Player"));
-                Instantiate(playerToken, platform2.GetComponent<Platform>().playerPlatForm.transform);
-                playerToken.transform.position = tokenTransform.position;
-                playerToken.transform.rotation = tokenTransform.rotation;
-                playerToken.transform.localScale = tokenTransform.localScale;
-                FixToken();
+                if (playerToken.transform.position != tokenTransform.position)
+                {
+                    //Debug.Log("Instantiate");
+                    Destroy(GameObject.FindGameObjectWithTag("Player"));
+                    //StartCoroutine(NeedASecond());
+                    //PersistantData.data.playerToken.SetActive(true);
+                    //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken = this.gameObject;
+                    playerToken.transform.SetParent(platform2.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken.transform.position = tokenTransform.position;
+                    playerToken.transform.rotation = tokenTransform.rotation;
+                    playerToken.transform.localScale = tokenTransform.localScale;
+                    FixToken();
+                }
                 PersistantData.data.inEvent = false;
             }
             if (PersistantData.data.totalCompleteLevels == 3)
             {
-                Destroy(GameObject.FindGameObjectWithTag("Player"));
-                Instantiate(playerToken, platform3.GetComponent<Platform>().playerPlatForm.transform);
-                playerToken.transform.position = tokenTransform.position;
-                playerToken.transform.rotation = tokenTransform.rotation;
-                playerToken.transform.localScale = tokenTransform.localScale;
-                FixToken();
+                if (playerToken.transform.position != tokenTransform.position)
+                {
+                    //Debug.Log("Instantiate");
+                    Destroy(GameObject.FindGameObjectWithTag("Player"));
+                    //StartCoroutine(NeedASecond());
+                    //PersistantData.data.playerToken.SetActive(true);
+                    //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken = this.gameObject;
+                    playerToken.transform.SetParent(platform3.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken.transform.position = tokenTransform.position;
+                    playerToken.transform.rotation = tokenTransform.rotation;
+                    playerToken.transform.localScale = tokenTransform.localScale;
+                    FixToken();
+                }
                 PersistantData.data.inEvent = false;
             }
             if (PersistantData.data.totalCompleteLevels == 4)
             {
-                Destroy(GameObject.FindGameObjectWithTag("Player"));
-                Instantiate(playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
-                playerToken.transform.position = tokenTransform.position;
-                playerToken.transform.rotation = tokenTransform.rotation;
-                playerToken.transform.localScale = tokenTransform.localScale;
-                FixToken();
+                if (playerToken.transform.position != tokenTransform.position)
+                {
+                    //Debug.Log("Instantiate");
+                    Destroy(GameObject.FindGameObjectWithTag("Player"));
+                    //StartCoroutine(NeedASecond());
+                    //PersistantData.data.playerToken.SetActive(true);
+                    //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken = this.gameObject;
+                    playerToken.transform.SetParent(platform4.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken.transform.position = tokenTransform.position;
+                    playerToken.transform.rotation = tokenTransform.rotation;
+                    playerToken.transform.localScale = tokenTransform.localScale;
+                    FixToken();
+                }
                 PersistantData.data.inEvent = false;
             }
 
             if (PersistantData.data.totalCompleteLevels == 5)
             {
-                Destroy(GameObject.FindGameObjectWithTag("Player"));
-                Instantiate(playerToken, platform5.GetComponent<Platform>().playerPlatForm.transform);
-                playerToken.transform.position = tokenTransform.position;
-                playerToken.transform.rotation = tokenTransform.rotation;
-                playerToken.transform.localScale = tokenTransform.localScale;
-                FixToken();
+                if (playerToken.transform.position != tokenTransform.position)
+                {
+                    //Debug.Log("Instantiate");
+                    Destroy(GameObject.FindGameObjectWithTag("Player"));
+                    //StartCoroutine(NeedASecond());
+                    //PersistantData.data.playerToken.SetActive(true);
+                    //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken = this.gameObject;
+                    playerToken.transform.SetParent(platform5.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken.transform.position = tokenTransform.position;
+                    playerToken.transform.rotation = tokenTransform.rotation;
+                    playerToken.transform.localScale = tokenTransform.localScale;
+                    FixToken();
+                }
                 PersistantData.data.inEvent = false;
             }
 
             if (PersistantData.data.totalCompleteLevels == 6)
             {
-                Destroy(GameObject.FindGameObjectWithTag("Player"));
-                Instantiate(playerToken, platform6.GetComponent<Platform>().playerPlatForm.transform);
-                playerToken.transform.position = tokenTransform.position;
-                playerToken.transform.rotation = tokenTransform.rotation;
-                playerToken.transform.localScale = tokenTransform.localScale;
-                FixToken();
+                if (playerToken.transform.position != tokenTransform.position)
+                {
+                    //Debug.Log("Instantiate");
+                    Destroy(GameObject.FindGameObjectWithTag("Player"));
+                    //StartCoroutine(NeedASecond());
+                    //PersistantData.data.playerToken.SetActive(true);
+                    //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken = this.gameObject;
+                    playerToken.transform.SetParent(platform6.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken.transform.position = tokenTransform.position;
+                    playerToken.transform.rotation = tokenTransform.rotation;
+                    playerToken.transform.localScale = tokenTransform.localScale;
+                    FixToken();
+                }
                 PersistantData.data.inEvent = false;
             }
 
             if (PersistantData.data.totalCompleteLevels == 7)
             {
-                Destroy(GameObject.FindGameObjectWithTag("Player"));
-                Instantiate(playerToken, platform7.GetComponent<Platform>().playerPlatForm.transform);
-                playerToken.transform.position = tokenTransform.position;
-                playerToken.transform.rotation = tokenTransform.rotation;
-                playerToken.transform.localScale = tokenTransform.localScale;
-                FixToken();
+                if (playerToken.transform.position != tokenTransform.position)
+                {
+                    //Debug.Log("Instantiate");
+                    Destroy(GameObject.FindGameObjectWithTag("Player"));
+                    //StartCoroutine(NeedASecond());
+                    //PersistantData.data.playerToken.SetActive(true);
+                    //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken = this.gameObject;
+                    playerToken.transform.SetParent(platform7.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken.transform.position = tokenTransform.position;
+                    playerToken.transform.rotation = tokenTransform.rotation;
+                    playerToken.transform.localScale = tokenTransform.localScale;
+                    FixToken();
+                }
                 PersistantData.data.inEvent = false;
             }
 
             if (PersistantData.data.totalCompleteLevels == 8)
             {
-                Destroy(GameObject.FindGameObjectWithTag("Player"));
-                Instantiate(playerToken, platform8.GetComponent<Platform>().playerPlatForm.transform);
-                playerToken.transform.position = tokenTransform.position;
-                playerToken.transform.rotation = tokenTransform.rotation;
-                playerToken.transform.localScale = tokenTransform.localScale;
-                FixToken();
+                if (playerToken.transform.position != tokenTransform.position)
+                {
+                    //Debug.Log("Instantiate");
+                    Destroy(GameObject.FindGameObjectWithTag("Player"));
+                    //StartCoroutine(NeedASecond());
+                    //PersistantData.data.playerToken.SetActive(true);
+                    //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken = this.gameObject;
+                    playerToken.transform.SetParent(platform8.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken.transform.position = tokenTransform.position;
+                    playerToken.transform.rotation = tokenTransform.rotation;
+                    playerToken.transform.localScale = tokenTransform.localScale;
+                    FixToken();
+                }
                 PersistantData.data.inEvent = false;
             }
 
             if (PersistantData.data.totalCompleteLevels == 9)
             {
-                Destroy(GameObject.FindGameObjectWithTag("Player"));
-                Instantiate(playerToken, platform9.GetComponent<Platform>().playerPlatForm.transform);
-                playerToken.transform.position = tokenTransform.position;
-                playerToken.transform.rotation = tokenTransform.rotation;
-                playerToken.transform.localScale = tokenTransform.localScale;
-                FixToken();
+                if (playerToken.transform.position != tokenTransform.position)
+                {
+                    //Debug.Log("Instantiate");
+                    Destroy(GameObject.FindGameObjectWithTag("Player"));
+                    //StartCoroutine(NeedASecond());
+                    //PersistantData.data.playerToken.SetActive(true);
+                    //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken = this.gameObject;
+                    playerToken.transform.SetParent(platform9.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken.transform.position = tokenTransform.position;
+                    playerToken.transform.rotation = tokenTransform.rotation;
+                    playerToken.transform.localScale = tokenTransform.localScale;
+                    FixToken();
+                }
                 PersistantData.data.inEvent = false;
             }
 
-            if (PersistantData.data.totalCompleteLevels == 10)
+            if (PersistantData.data.totalCompleteLevels >= 10)
             {
-                Destroy(GameObject.FindGameObjectWithTag("Player"));
-                Instantiate(playerToken, platform10.GetComponent<Platform>().playerPlatForm.transform);
-                playerToken.transform.position = tokenTransform.position;
-                playerToken.transform.rotation = tokenTransform.rotation;
-                playerToken.transform.localScale = tokenTransform.localScale;
-                FixToken();
+                if (playerToken.transform.position != tokenTransform.position)
+                {
+                    //Debug.Log("Instantiate");
+                    Destroy(GameObject.FindGameObjectWithTag("Player"));
+                    //StartCoroutine(NeedASecond());
+                    //PersistantData.data.playerToken.SetActive(true);
+                    //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken = this.gameObject;
+                    playerToken.transform.SetParent(platform10.GetComponent<Platform>().playerPlatForm.transform);
+                    playerToken.transform.position = tokenTransform.position;
+                    playerToken.transform.rotation = tokenTransform.rotation;
+                    playerToken.transform.localScale = tokenTransform.localScale;
+                    FixToken();
+                }
                 PersistantData.data.inEvent = false;
             }
         }
@@ -167,8 +275,7 @@ public class PlayerTokenMover : MonoBehaviour
     {
         tokenTransform = this.transform;
 
-        playerToken = GameObject.FindGameObjectWithTag("Player");
-        moveCounter = GameObject.FindGameObjectWithTag("MoveCounter").GetComponent<MoveCounter>();
+        playerToken = PersistantData.data.playerToken;
 
         platform0 = GameObject.FindGameObjectWithTag("Platform0").GetComponent<Image>();
         platform1 = GameObject.FindGameObjectWithTag("Platform1").GetComponent<Button>();
@@ -196,13 +303,17 @@ public class PlayerTokenMover : MonoBehaviour
 
 
         platform1.interactable = true;
+        p0Objective = true;
+        p1Objective = true;
         for (int i = 0; i < p1.Length; i++)
         {
             p1[i].color = new Color(1f, 1f, 1f, 1f);
+            //p1[i].GetComponent<Platform>().alreadyDone = true;
         }
         for (int i = 0; i < p0.Length; i++)
         {
             p0[i].color = new Color(1f, 1f, 1f, 1f);
+            //p0[i].GetComponent<Platform>().alreadyDone = true;
         }
 
         platform2.interactable = false;
@@ -213,9 +324,9 @@ public class PlayerTokenMover : MonoBehaviour
         platform7.interactable = false;
         platform8.interactable = false;
         platform9.interactable = false;
-        platform10.interactable = false;  
-        
-        if (PersistantData.data.totalCompleteLevels != 0)
+        platform10.interactable = false;
+
+        if (PersistantData.data.totalCompleteLevels != 0 )
         {
             PlacePeice();
         }
@@ -225,90 +336,120 @@ public class PlayerTokenMover : MonoBehaviour
     {
         PeiceMoved();
         tokenTransform = this.transform;
+        /*if (PersistantData.data.tutorial == true && PersistantData.data.totalCompleteLevels == 1)
+        {
+            tutorialDialog.SetActive(true);
+        }*/
     }
 
     private void PeiceMoved()
     {
 
-        if (PersistantData.data.totalCompleteLevels >= 1)
+        if (PersistantData.data.totalCompleteLevels >= 1 && PersistantData.data.inEvent == false)
         {
             for (int i = 0; i < p2.Length; i++)
             {
                 p2[i].color = new Color(1f, 1f, 1f, 1f);
+                
+
             }
-            
+            platform1.GetComponentInParent<Platform>().alreadyDone = true;
+            p2Objective = true;
             platform2.interactable = true;
         }
-        if (PersistantData.data.totalCompleteLevels >= 2)
+        if (PersistantData.data.totalCompleteLevels >= 2 && PersistantData.data.inEvent == false)
         {
             for (int i = 0; i < p3.Length; i++)
             {
                 p3[i].color = new Color(1f, 1f, 1f, 1f);
             }
+            platform2.GetComponentInParent<Platform>().alreadyDone = true;
+            p3Objective = true;
             platform3.interactable = true;
 
         }
-        if (PersistantData.data.totalCompleteLevels >= 3)
+        if (PersistantData.data.totalCompleteLevels >= 3 && PersistantData.data.inEvent == false)
         {
             for (int i = 0; i < p4.Length; i++)
             {
                 p4[i].color = new Color(1f, 1f, 1f, 1f);
+                //p4[i].GetComponent<Platform>().alreadyDone = true;
             }
+            platform3.GetComponentInParent<Platform>().alreadyDone = true;
+            p4Objective = true;
             platform4.interactable = true;
 
         }
-        if (PersistantData.data.totalCompleteLevels >= 4)
+        if (PersistantData.data.totalCompleteLevels >= 4 && PersistantData.data.inEvent == false)
         {
             for (int i = 0; i < p5.Length; i++)
             {
                 p5[i].color = new Color(1f, 1f, 1f, 1f);
+                //p5[i].GetComponent<Platform>().alreadyDone = true;
             }
+            platform4.GetComponentInParent<Platform>().alreadyDone = true;
+            p5Objective = true;
             platform5.interactable = true;
 
 
         }
-        if (PersistantData.data.totalCompleteLevels >= 5)
+        if (PersistantData.data.totalCompleteLevels >= 5 && PersistantData.data.inEvent == false)
         {
             for (int i = 0; i < p6.Length; i++)
             {
                 p6[i].color = new Color(1f, 1f, 1f, 1f);
+                //p6[i].GetComponent<Platform>().alreadyDone = true;
             }
+            platform5.GetComponentInParent<Platform>().alreadyDone = true;
+            p6Objective = true;
             platform6.interactable = true;
 
         }
-        if (PersistantData.data.totalCompleteLevels >= 6)
+        if (PersistantData.data.totalCompleteLevels >= 6 && PersistantData.data.inEvent == false)
         {
             for (int i = 0; i < p7.Length; i++)
             {
                 p7[i].color = new Color(1f, 1f, 1f, 1f);
+                //p7[i].GetComponent<Platform>().alreadyDone = true;
             }
+            platform6.GetComponentInParent<Platform>().alreadyDone = true;
+            p7Objective = true;
             platform7.interactable = true;
 
         }
-        if (PersistantData.data.totalCompleteLevels >= 7)
+        if (PersistantData.data.totalCompleteLevels >= 7 && PersistantData.data.inEvent == false)
         {
             for(int i = 0; i < p8.Length; i++)
             {
                 p8[i].color = new Color(1f, 1f, 1f, 1f);
+                //p8[i].GetComponent<Platform>().alreadyDone = true;
             }
+            platform7.GetComponentInParent<Platform>().alreadyDone = true;
+            p8Objective = true;
             platform8.interactable = true;
 
         }
-        if (PersistantData.data.totalCompleteLevels >= 8)
+        if (PersistantData.data.totalCompleteLevels >= 8 && PersistantData.data.inEvent == false)
         {
             for (int i = 0; i < p9.Length; i++)
             {
                 p9[i].color = new Color(1f, 1f, 1f, 1f);
+                //p9[i].GetComponent<Platform>().alreadyDone = true;
             }
+            platform8.GetComponentInParent<Platform>().alreadyDone = true;
+            p9Objective = true;
             platform9.interactable = true;
 
         }
-        if (PersistantData.data.totalCompleteLevels >= 9)
+        if (PersistantData.data.totalCompleteLevels >= 9 && PersistantData.data.inEvent == false)
         {
             for (int i = 0; i < p10.Length; i++)
             {
                 p10[i].color = new Color(1f, 1f, 1f, 1f);
+                //p10[i].GetComponent<Platform>().alreadyDone = true;
             }
+            platform9.GetComponentInParent<Platform>().alreadyDone = true;
+            p10Objective = true;
             platform10.interactable = true;
         }
 

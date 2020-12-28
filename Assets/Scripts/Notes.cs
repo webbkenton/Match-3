@@ -6,6 +6,19 @@ public class Notes : MonoBehaviour
 {
 
     /*--Imediate Needs--
+     * 
+     * Lost in the sauce
+     * What is the current issue!? -- So currently trying to find a way to make the next level appear once you have stepped on the platform
+     * --Possible solutions-- Could add a UI element to each of the platforms with a button --Click here to continue-- //-This is the current Model-//
+     * Tutorial Topics Need 8
+     * 1 Moving around the board
+     * 2 Fundamentals
+     * 3 Health/points
+     * 4 Skills
+     * 5 Leveling Up
+     * 6 Monsters
+     * 7 Currency
+     * 8 Bosses?
 
     Need to replace Background Asset
 

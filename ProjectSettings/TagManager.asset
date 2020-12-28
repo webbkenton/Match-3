@@ -40,6 +40,8 @@ TagManager:
   - Platform0
   - ORing
   - Dialog
+  - Tutorial
+  - PersistantData
   layers:
   - Default
   - TransparentFX

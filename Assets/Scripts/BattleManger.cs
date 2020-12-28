@@ -125,6 +125,8 @@ public class BattleManger : MonoBehaviour
     {
         PersistantData.data.currency += monsterValue;
         PersistantData.data.experience += monsterXP;
+        PersistantData.data.totalCompleteLevels++;
+        //PersistantData.data.playerToken.SetActive(true);
         GameObject.FindGameObjectWithTag("Claim").GetComponent<Button>().enabled = false;
         //KeepHud();
         SceneManager.LoadScene("LevelMap");

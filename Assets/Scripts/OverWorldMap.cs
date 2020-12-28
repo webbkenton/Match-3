@@ -19,26 +19,11 @@ public class OverWorldMap : MonoBehaviour
     {
         playerToken = GameObject.FindGameObjectWithTag("Player");
     }
-
-    public void checkComplete()
-    {
-        if (objectiveComplete == true)
-        {
-            if (PersistantData.data.completedObject.Contains(this.gameObject))
-            {
-                objectiveComplete = false;
-            }
-            else
-            {
-                PersistantData.data.completedObject.Add(this.gameObject);
-                this.GetComponentInParent<Image>().color = new Color(1f, 1f, 1f, 1f);
-                objectiveComplete = false;
-            }
-        }
-    }
     public void MovePlayerToken()
     {
-        playerToken.transform.SetParent(this.transform); 
+        playerToken.transform.SetParent(this.transform);
+        PersistantData.data.currentObjective = this.gameObject;
         Mathf.Lerp(playerToken.transform.position.y, this.transform.position.y, .1f);
+        PersistantData.data.waitForMove = false;
     }
 }

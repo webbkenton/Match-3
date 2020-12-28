@@ -16,6 +16,9 @@ public class PersistantData : MonoBehaviour
     public float experienceToLevel;
     public Vector3 playerPosition;
     public GameObject playerToken;
+    public bool tutorial;
+    public bool waitForMove;
+    public GameObject currentObjective;
 
     public bool inEvent;
 
@@ -31,7 +34,7 @@ public class PersistantData : MonoBehaviour
 
     private void Start()
     {
-        playerToken = GameObject.FindGameObjectWithTag("Player");
+        //playerToken = GameObject.FindGameObjectWithTag("Player");
         playerTokenMover = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerTokenMover>();
     }
     private void Awake()
@@ -39,13 +42,23 @@ public class PersistantData : MonoBehaviour
         if (data == null)
         {
             data = this;
+            DontDestroyOnLoad(this.gameObject);
         }
-        DontDestroyOnLoad(data);
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void ObjectiveComplete()
     {
-        totalCompleteLevels++;
+        for (int i = 0; i < completedObject.Count; i++)
+        {
+            if (completed[i].GetComponent<OverWorldMap>().objectiveComplete)
+            {
+                totalCompleteLevels++;
+            }
+        }
     }
 
     private void Update()
@@ -58,6 +71,12 @@ public class PersistantData : MonoBehaviour
         {
             health = maxHealth;
         }
-        playerToken = GameObject.FindGameObjectWithTag("Player");
+        //playerToken = GameObject.FindGameObjectWithTag("Player");
+        //ExtraTokens();
+        if (GameObject.FindGameObjectWithTag("Tutorial"))
+        {
+            tutorial = true;
+        }
+        ObjectiveComplete();
     }
 }
