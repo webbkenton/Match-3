@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 996a2e6470056db4788e103226b8ed2f, type: 3}
+  m_Name: GamblersBurden
+  m_EditorClassIdentifier: 
+  abilityDescription: Take Between 1-3 Damage Each Turn For 3 turns. Deal 4-8 Damage
+    to The Enemy For 3 Turns. -25AP
+  abilityIcon: {fileID: 21300000, guid: c93a7deefd56bee498210c20dc14ba74, type: 3}
+  abilityCost: 25
+  abilityName: GamblersBurden
+  abilityType: 8
+  abilityFamily: 2
+  pointsRequired: 2
+  cooldown: 0
+  coolDownTime: 10

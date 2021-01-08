@@ -12,8 +12,10 @@ public class MonsterSO : ScriptableObject
         Aerial
     }
 
-    public bool isDefeated;
+    public bool isDefeated = true;
     public bool isBoss;
+    public bool hasAbilities;
+    public int numberOfAbilities;
     public MonsterType monsterType;
     public string monsterName;
     public int monsterHealth;

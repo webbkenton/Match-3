@@ -7,36 +7,14 @@ public class Notes : MonoBehaviour
 
     /*--Imediate Needs--
      * 
-     * Lost in the sauce
-     * What is the current issue!? -- So currently trying to find a way to make the next level appear once you have stepped on the platform
-     * --Possible solutions-- Could add a UI element to each of the platforms with a button --Click here to continue-- //-This is the current Model-//
-     * Tutorial Topics Need 8
-     * 1 Moving around the board
-     * 2 Fundamentals
-     * 3 Health/points
-     * 4 Skills
-     * 5 Leveling Up
-     * 6 Monsters
-     * 7 Currency
-     * 8 Bosses?
-
-    Need to replace Background Asset
-
-
-
-    first things first find a way to bring the player back to another position other then the start position;
-    playerPosition == ParentPosition
-
-    Monsters defeated stored inside of playerToken?
-
-    overworld is only getting the overworld script. therefore it does not contain a transform. Need to get the overworld game object in order to get the transform;
-
-
-    Need to figure out how to bring the player back to the spot where the fight started
-    ---When player moves to a new spot store the transform of that spot inside of a variable in the persistant data? ---
-
-    Need to destory the enemy that has been defeated.
-    Need to keep the floor tiles lit up
+     * Enemy Abilities Will Need To Be Stored As SO's so the data can be accessed.
+     * Enemy Abilities Need Animations To Display Their Effect.
+     * Player Abilities Need to Be Disabled until Unlocked.
+     * Talent Tree Icons Need to Be Added And Enabled
+     * Level Up Needs animation
+     * Cosider adding an Animation to the outerring when it gets unlocked to make it more signifigant
+     * Talent Tree Abilties Will Need SO's and also will need to add HoverText for information;
+    
     Need to add animations and effects to the enemies to make them feel more alive
     Need to create a dialog box and attach the completed button to it;
 
@@ -111,6 +89,38 @@ public class Notes : MonoBehaviour
      * //FIXED//The Adjacent bomb particle effect has a 1second Delay before it starts.
      * //FIXED//Shuffle can happen while the board is refilling which will then glitch the board. Shuffle()Needs to be delayed.
      * //Cascading tiles do not create bombs corectly.
+     *  * 
+     * BattleManager(RestoreHealth(), AddGold(), TakeDamage(), AddItem()) -- these need to be added for overworld events as an Additional Onclick()
+     //* Lost in the sauce
+     //* What is the current issue!? -- So currently trying to find a way to make the next level appear once you have stepped on the platform
+     //* --Possible solutions-- Could add a UI element to each of the platforms with a button --Click here to continue-- //-This is the current Model-//
+     //* Tutorial Topics Need 8
+     //* 1 Moving around the board
+     * 2 Fundamentals
+     * 3 Health/points
+     * 4 Skills
+     * 5 Leveling Up
+     * 6 Monsters
+     * 7 Currency
+     * 8 Bosses?
+
+    Need to replace Background Asset
+
+
+
+    first things first find a way to bring the player back to another position other then the start position;
+    playerPosition == ParentPosition
+
+    Monsters defeated stored inside of playerToken?
+
+    overworld is only getting the overworld script. therefore it does not contain a transform. Need to get the overworld game object in order to get the transform;
+
+
+    Need to figure out how to bring the player back to the spot where the fight started
+    ---When player moves to a new spot store the transform of that spot inside of a variable in the persistant data? ---
+
+    Need to destory the enemy that has been defeated.
+    Need to keep the floor tiles lit up
     //Completed//
 
     /Ability Ideas//

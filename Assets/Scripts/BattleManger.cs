@@ -8,6 +8,22 @@ using UnityEngine.SceneManagement;
 public class BattleManger : MonoBehaviour
 {
     public bool defending;
+    public bool perfectDefense;
+    public bool penUltimateHealEffect;
+    public bool ultimateHealEffect;
+    public bool lesserHealEffect;
+    public bool lesserSacEffect;
+    public bool greaterSacEffect;
+    public bool ultimateSacEffect;
+    public bool rageEffect;
+
+    public int ultimateHealCounter;
+    public int lesserHealCounter;
+    public int lesserSacCounter;
+    public int greaterSacCounter;
+    public int ultimateSacCounter;
+
+
     public MonsterSO monsterSO;
     private MonsterSO.MonsterType monsterType;
     public Text monsterName;
@@ -55,7 +71,25 @@ public class BattleManger : MonoBehaviour
 
     private MonsterInfo monsterInfo;
 
+    public GameObject[] heavyAttack;
+    public GameObject[] magicAttack;
+
     private GameObject playerHudDisplay;
+    public GameObject EnemyAbility0;
+    public GameObject EnemyAbility1;
+    public GameObject EnemyAbility2;
+    public GameObject EnemyAbility3;
+
+    public AbilitySO playerAbility1;
+    public AbilitySO playerAbility2;
+    public AbilitySO playerAbility3;
+
+    public GameObject playerAbilityHolder;
+    public GameObject enemyAbilityDescription;
+
+    public AbilitySO selectedMonsterAbility;
+
+
 
 
 
@@ -84,7 +118,7 @@ public class BattleManger : MonoBehaviour
         monsterSound.Play();
         monsterValue = monsterSO.monsterKillValue;
         monsterXP = monsterSO.monsterKillXP;
-        Destroy(GameObject.FindGameObjectWithTag("CurrentEnemy"));
+        //Destroy(GameObject.FindGameObjectWithTag("CurrentEnemy"));
         Destroy(GameObject.FindGameObjectWithTag("OverworldObject"));
 
     }
@@ -106,19 +140,211 @@ public class BattleManger : MonoBehaviour
             monsterPicture.transform.localPosition = new Vector2(monsterPicture.transform.position.x, 0);
             monsterPicture.rectTransform.localScale = new Vector3(1.5f, 1.5f, 0);
         }
+        MonsterAbilities();
+        SetPlayerAbilities();
+        UltimateHealEffect();
+        LesserHealEffect();
+        LesserSacEffect();
+        GreaterSacEffect();
+        UltimateSacEffect();
     }
 
-    private void KeepHud()
+    private void UltimateSacEffect()
     {
-        DontDestroyOnLoad(playerHudDisplay);
+        if (ultimateSacEffect)
+        {
+            if (turnCounter == ultimateSacCounter)
+            {
+                if (monsterHealth >= 1)
+                {
+                    PersistantData.data.health -= 5;
+                    ultimateSacCounter++;  
+                }
+                else if (monsterHealth <= 0)
+                {
+                    PersistantData.data.health = PersistantData.data.maxHealth;
+                }
+            }
+        }
     }
-    private void Victory()
+    private void GreaterSacEffect()
+    {
+        if (greaterSacEffect)
+        {
+            if (turnCounter == greaterSacCounter)
+            {
+                PersistantData.data.health -= Random.Range(0, 3);
+                monsterHealth -= Random.Range(4, 8);
+            }
+        }
+    }
+    private void LesserSacEffect()
+    {
+        if(lesserSacEffect)
+        {
+            if (turnCounter == lesserSacCounter)
+            {
+                monsterHealth -= 3;
+                lesserSacCounter++;
+            }
+        }
+    }
+    private void LesserHealEffect()
+    {
+        if (lesserHealEffect)
+        {
+            if (turnCounter == lesserHealCounter)
+            {
+                PersistantData.data.health += 2;
+                lesserHealCounter++;
+            }
+        }
+    }
+    private void UltimateHealEffect()
+    {
+        if (ultimateHealEffect)
+        {
+            if (turnCounter == ultimateHealCounter)
+            {
+                PersistantData.data.health += 10;
+                monsterHealth -= 10;
+                ultimateHealCounter++;
+            }
+        }
+    }
+    private void SetPlayerAbilities()
+    {
+        if (PersistantData.data.currentAbilities.Count == 1)
+        {
+            playerAbility1 = PersistantData.data.currentAbilities[0];
+            GameObject.FindGameObjectWithTag("PlayerAbility1").GetComponent<AbilityHolder>().abilitySO = playerAbility1;
+            //playerAbilityHolder.GetComponentInChildren<AbilityHolder>().abilitySO = playerAbility1;
+            if (GameObject.FindGameObjectWithTag("PlayerAbility2"))
+            {
+                GameObject.FindGameObjectWithTag("PlayerAbility2").SetActive(false);
+                GameObject.FindGameObjectWithTag("PlayerAbility3").SetActive(false);
+            }
+            else
+            {
+                return;
+            }
+        }
+        else if (PersistantData.data.currentAbilities.Count == 2)
+        {
+            playerAbility1 = PersistantData.data.currentAbilities[0];
+            playerAbility2 = PersistantData.data.currentAbilities[1];
+            GameObject.FindGameObjectWithTag("PlayerAbility1").GetComponent<AbilityHolder>().abilitySO = playerAbility1;
+            GameObject.FindGameObjectWithTag("PlayerAbility2").GetComponent<AbilityHolder>().abilitySO = playerAbility2;
+            if (GameObject.FindGameObjectWithTag("PlayerAbility3"))
+            {
+                GameObject.FindGameObjectWithTag("PlayerAbility3").SetActive(false);
+            }
+
+        }
+        else if (PersistantData.data.currentAbilities.Count >= 3)
+        {
+            playerAbility1 = PersistantData.data.currentAbilities[0];
+            playerAbility2 = PersistantData.data.currentAbilities[1];
+            playerAbility3 = PersistantData.data.currentAbilities[2];
+            GameObject.FindGameObjectWithTag("PlayerAbility1").GetComponent<AbilityHolder>().abilitySO = playerAbility1;
+            GameObject.FindGameObjectWithTag("PlayerAbility2").GetComponent<AbilityHolder>().abilitySO = playerAbility2;
+            GameObject.FindGameObjectWithTag("PlayerAbility3").GetComponent<AbilityHolder>().abilitySO = playerAbility3;
+        }
+        else
+        {
+            playerAbilityHolder.SetActive(false);
+        }
+    }
+    private void MonsterAbilities()
+    {
+        if (monsterSO.hasAbilities)
+        {
+            if (monsterSO.numberOfAbilities == 4)
+            {
+                EnemyAbility0.SetActive(true);
+                EnemyAbility0.GetComponentInChildren<Image>().sprite = monsterInfo.monsterAbilties[0].abilityIcon;
+                EnemyAbility0.GetComponentInChildren<MonsterAbilityHolder>().ability = monsterInfo.monsterAbilties[0];
+                EnemyAbility1.SetActive(true);
+                EnemyAbility1.GetComponentInChildren<Image>().sprite = monsterInfo.monsterAbilties[1].abilityIcon;
+                EnemyAbility1.GetComponentInChildren<MonsterAbilityHolder>().ability = monsterInfo.monsterAbilties[1];
+                EnemyAbility2.SetActive(true);
+                EnemyAbility2.GetComponentInChildren<Image>().sprite = monsterInfo.monsterAbilties[2].abilityIcon;
+                EnemyAbility2.GetComponentInChildren<MonsterAbilityHolder>().ability = monsterInfo.monsterAbilties[2];
+                EnemyAbility3.SetActive(true);
+                EnemyAbility3.GetComponentInChildren<Image>().sprite = monsterInfo.monsterAbilties[3].abilityIcon;
+                EnemyAbility3.GetComponentInChildren<MonsterAbilityHolder>().ability = monsterInfo.monsterAbilties[3];
+
+            }
+            if (monsterSO.numberOfAbilities == 3)
+            {
+                EnemyAbility0.SetActive(true);
+                EnemyAbility0.GetComponentInChildren<Image>().sprite = monsterInfo.monsterAbilties[0].abilityIcon;
+                EnemyAbility0.GetComponentInChildren<MonsterAbilityHolder>().ability = monsterInfo.monsterAbilties[0];
+                EnemyAbility1.SetActive(true);
+                EnemyAbility1.GetComponentInChildren<Image>().sprite = monsterInfo.monsterAbilties[1].abilityIcon;
+                EnemyAbility1.GetComponentInChildren<MonsterAbilityHolder>().ability = monsterInfo.monsterAbilties[1];
+                EnemyAbility2.SetActive(true);
+                EnemyAbility2.GetComponentInChildren<Image>().sprite = monsterInfo.monsterAbilties[2].abilityIcon;
+                EnemyAbility2.GetComponentInChildren<MonsterAbilityHolder>().ability = monsterInfo.monsterAbilties[2];
+            }
+            if (monsterSO.numberOfAbilities == 2)
+            {
+                EnemyAbility0.SetActive(true);
+                EnemyAbility0.GetComponentInChildren<Image>().sprite = monsterInfo.monsterAbilties[0].abilityIcon;
+                EnemyAbility0.GetComponentInChildren<MonsterAbilityHolder>().ability = monsterInfo.monsterAbilties[0];
+                EnemyAbility1.SetActive(true);
+                EnemyAbility1.GetComponentInChildren<Image>().sprite = monsterInfo.monsterAbilties[1].abilityIcon;
+                EnemyAbility1.GetComponentInChildren<MonsterAbilityHolder>().ability = monsterInfo.monsterAbilties[1];
+
+            }
+            if (monsterSO.numberOfAbilities == 1)
+            {
+                EnemyAbility0.SetActive(true);
+                EnemyAbility0.GetComponentInChildren<Image>().sprite = monsterInfo.monsterAbilties[0].abilityIcon;
+                EnemyAbility0.GetComponentInChildren<MonsterAbilityHolder>().ability = monsterInfo.monsterAbilties[0];
+                //enemyAbilityDescription.GetComponentInChildren<Text>().text = monsterInfo.monsterAbilties[0].abilityDescription;
+                //EnemyAbility0.GetComponent<Image>().sprite;
+            }
+
+
+
+        }
+        else
+        {
+            return;
+        }
+    }
+    public void DisplayMonsterAbility()
+    {
+        if (selectedMonsterAbility != null)
+        {
+            enemyAbilityDescription.GetComponentInChildren<Text>().text = selectedMonsterAbility.abilityDescription;
+
+            if (enemyAbilityDescription.activeInHierarchy)
+            {
+                enemyAbilityDescription.SetActive(false);
+            }
+            else
+            {
+                enemyAbilityDescription.SetActive(true);
+            }
+        }
+    }
+    public void Victory()
     {
         monsterValue = Random.Range(11, monsterSO.monsterKillValue);
         monsterXP = monsterSO.monsterKillXP;
         monsterKillValue.text = monsterValue.ToString();
         monsterKillXP.text = monsterXP.ToString();
         monsterSO.isDefeated = true;
+        if (!PersistantData.data.defeatedMonsters.Contains(monsterSO))
+        {
+            PersistantData.data.defeatedMonsters.Add(monsterSO);
+        }
+        if (perfectDefense)
+        {
+            perfectDefense = false;
+        }
 
     }
     public void ClaimVictory()
@@ -126,9 +352,11 @@ public class BattleManger : MonoBehaviour
         PersistantData.data.currency += monsterValue;
         PersistantData.data.experience += monsterXP;
         PersistantData.data.totalCompleteLevels++;
-        //PersistantData.data.playerToken.SetActive(true);
+        PersistantData.data.gameObject.SetActiveRecursively(true);
+        PersistantData.data.playerToken = GameObject.FindGameObjectWithTag("Player");
         GameObject.FindGameObjectWithTag("Claim").GetComponent<Button>().enabled = false;
-        //KeepHud();
+        //StartCoroutine(PersistantData.data.TransitionIn());
+        new WaitForSeconds(3f);
         SceneManager.LoadScene("LevelMap");
         
     }
@@ -170,11 +398,24 @@ public class BattleManger : MonoBehaviour
         }
         for (int i = 0; i < manaPotions.Length; i++)
         {
-            manaPotions[i].GetComponent<Icon>().isMatched = true;
-            Destroy(manaPotions[i]);
+            for (int j = 0; j < heavyAttack.Length; j++)
+            {
+                for (int k = 0; k < magicAttack.Length; k++)
+                {
+                    manaPotions[i].GetComponent<Icon>().isMatched = true;
+                    heavyAttack[j].GetComponent<Icon>().isMatched = true;
+                    magicAttack[k].GetComponent<Icon>().isMatched = true;
+                    Destroy(manaPotions[i]);
+                    Destroy(heavyAttack[j]);
+                    Destroy(magicAttack[k]);
+                }
+            }
+            
         }
         particles = null;
         manaPotions = null;
+        heavyAttack = null;
+        magicAttack = null;
         board.RefillOnAbility();
         board.DestroyMatches();
         board.currentState = GameState.move;
@@ -186,10 +427,23 @@ public class BattleManger : MonoBehaviour
         {
             board.currentState = GameState.wait;
             manaPotions = GameObject.FindGameObjectsWithTag("Attack");
+            heavyAttack = GameObject.FindGameObjectsWithTag("Heavy Attack");
+            magicAttack = GameObject.FindGameObjectsWithTag("Magic");
+            
             Debug.Log("Array Populated");
             for (int i = 0; i < manaPotions.Length; i++)
             {
-                Instantiate(abilityEffect, manaPotions[i].transform.position, Quaternion.identity);
+                for (int j = 0; j < heavyAttack.Length; j++)
+                {
+                    for (int k = 0; k < magicAttack.Length; k++)
+                    {
+                        Instantiate(abilityEffect, manaPotions[i].transform.position, Quaternion.identity);
+                        Instantiate(abilityEffect, heavyAttack[j].transform.position, Quaternion.identity);
+                        Instantiate(abilityEffect, magicAttack[k].transform.position, Quaternion.identity);
+
+                    }
+                }
+                
             }
             StartCoroutine(SmallDelay());
             
@@ -203,7 +457,7 @@ public class BattleManger : MonoBehaviour
            
         }
     }
-    public void UseSacrificeAbility()
+    /*public void UseSacrificeAbility()
     {
         if (board.currentState == GameState.move)
         {
@@ -215,7 +469,7 @@ public class BattleManger : MonoBehaviour
                 Victory();
             }
         }
-    }
+    }*/
 
     private void UpdatePlayer()
     {
@@ -274,18 +528,26 @@ public class BattleManger : MonoBehaviour
                 attackCounter++;
                 if (attackCounter >= 1)
                 {
-                    if (defending == true)
+                    if (defending == true || perfectDefense == true)
                     {
                         PersistantData.data.health = playerHealthBar.value - 3f;
                         player.GetComponent<Animator>().SetBool("Damaged", true);
                         attackCounter = 0;
                         defending = false;
+                        if (lesserSacEffect)
+                        {
+                            PersistantData.data.health -= 2f;
+                        }
                     }
                     else
                     {
                         PersistantData.data.health = playerHealthBar.value - 4f;
                         player.GetComponent<Animator>().SetBool("Damaged", true);
                         attackCounter = 0;
+                        if (lesserSacEffect)
+                        {
+                            PersistantData.data.health -= 2f;
+                        }
                     }
                 }
                 monsterRageBar.value = 0;

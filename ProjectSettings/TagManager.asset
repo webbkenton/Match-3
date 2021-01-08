@@ -42,6 +42,18 @@ TagManager:
   - Dialog
   - Tutorial
   - PersistantData
+  - PlayerHolderObject
+  - EnemyAbility1
+  - EnemyAbility2
+  - EnemyAbility3
+  - EnemyAbility4
+  - Purchased
+  - CurrentAbility1
+  - CurrentAbility2
+  - CurrentAbility3
+  - PlayerAbility1
+  - PlayerAbility2
+  - PlayerAbility3
   layers:
   - Default
   - TransparentFX

@@ -9,6 +9,11 @@ public class OverWorldMap : MonoBehaviour
     public bool objectiveComplete;
     public Transform playerTransform;
     private PlayerTokenMover mover;
+
+    private void Awake()
+    {
+        //StartCoroutine(PersistantData.data.TransitionOut());
+    }
     void Start()
     {
         playerToken = GameObject.FindGameObjectWithTag("Player");
@@ -26,4 +31,6 @@ public class OverWorldMap : MonoBehaviour
         Mathf.Lerp(playerToken.transform.position.y, this.transform.position.y, .1f);
         PersistantData.data.waitForMove = false;
     }
+
+
 }

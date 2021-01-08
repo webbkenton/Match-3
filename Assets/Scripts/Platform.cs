@@ -30,4 +30,13 @@ public class Platform : MonoBehaviour
         alreadyDone = true;
         uiPanel.SetActive(false);
     }
+
+    public void HealthPotionTile()
+    {
+        PersistantData.data.health = PersistantData.data.maxHealth;
+    }
+    public void AbilityPotionTile()
+    {
+        PersistantData.data.mana = PersistantData.data.maxMana;
+    }
 }

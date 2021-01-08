@@ -63,8 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GoldenSkullStudios\2D_Iso_Tileset_Ice-Dungeon\Bonus\Scripts\Simple_Char_Move.cs" />
-    <Compile Include="Assets\GoldenSkullStudios\2D_Iso_Tileset_Ice-Dungeon\Bonus\Scripts\Simple_Door_Interaction.cs" />
+    <Compile Include="Assets\Choices.cs" />
+    <Compile Include="Assets\MonsterAbilityHolder.cs" />
     <Compile Include="Assets\Scripts\AbilityHolder.cs" />
     <Compile Include="Assets\Scripts\AbilitySO.cs" />
     <Compile Include="Assets\Scripts\BackgroundTile.cs" />
@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\HintManager.cs" />
     <Compile Include="Assets\Scripts\Icon.cs" />
     <Compile Include="Assets\Scripts\IconSO.cs" />
+    <Compile Include="Assets\Scripts\LichTapAbility.cs" />
     <Compile Include="Assets\Scripts\MenuScript.cs" />
     <Compile Include="Assets\Scripts\MonsterHolder.cs" />
     <Compile Include="Assets\Scripts\MonsterInfo.cs" />
@@ -93,7 +94,9 @@
     <Compile Include="Assets\Scripts\PlayerSelect.cs" />
     <Compile Include="Assets\Scripts\PlayerTokenMover.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />
+    <Compile Include="Assets\Scripts\SelectAbilities.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\TalentAbilityHolder.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
@@ -106,12 +109,10 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\2D Hand Painted Tilesets\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
-    <None Include="Assets\GoldenSkullStudios\2D_Iso_Tileset_Ice-Dungeon\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <Reference Include="UnityEngine">

@@ -16,6 +16,8 @@ public class PlayerTokenMover : MonoBehaviour
     private Button platform9;
     private Button platform10;
 
+    public GameObject continueButton;
+
     public Image platform0;
 
     public GameObject playerToken;
@@ -53,6 +55,13 @@ public class PlayerTokenMover : MonoBehaviour
 
     // Start is called before the first frame update
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        this.gameObject.transform.SetParent(null);
+        DontDestroyOnLoad(this.gameObject);
+        this.gameObject.transform.SetParent(GameObject.FindGameObjectWithTag("PlayerHolderObject").transform);
+        this.gameObject.SetActive(false);
+    }
     private void Awake()
     {
         FixToken();
@@ -90,6 +99,7 @@ public class PlayerTokenMover : MonoBehaviour
                     //PersistantData.data.playerToken.SetActive(true);
                     //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken = this.gameObject;
+                    PersistantData.data.playerToken = GameObject.FindGameObjectWithTag("Player");
                     playerToken.transform.SetParent(platform1.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken.transform.position = tokenTransform.position;
                     playerToken.transform.rotation = tokenTransform.rotation;
@@ -109,6 +119,7 @@ public class PlayerTokenMover : MonoBehaviour
                     //PersistantData.data.playerToken.SetActive(true);
                     //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken = this.gameObject;
+                    PersistantData.data.playerToken = GameObject.FindGameObjectWithTag("Player");
                     playerToken.transform.SetParent(platform2.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken.transform.position = tokenTransform.position;
                     playerToken.transform.rotation = tokenTransform.rotation;
@@ -127,6 +138,7 @@ public class PlayerTokenMover : MonoBehaviour
                     //PersistantData.data.playerToken.SetActive(true);
                     //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken = this.gameObject;
+                    PersistantData.data.playerToken = GameObject.FindGameObjectWithTag("Player");
                     playerToken.transform.SetParent(platform3.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken.transform.position = tokenTransform.position;
                     playerToken.transform.rotation = tokenTransform.rotation;
@@ -145,6 +157,7 @@ public class PlayerTokenMover : MonoBehaviour
                     //PersistantData.data.playerToken.SetActive(true);
                     //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken = this.gameObject;
+                    PersistantData.data.playerToken = GameObject.FindGameObjectWithTag("Player");
                     playerToken.transform.SetParent(platform4.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken.transform.position = tokenTransform.position;
                     playerToken.transform.rotation = tokenTransform.rotation;
@@ -164,6 +177,7 @@ public class PlayerTokenMover : MonoBehaviour
                     //PersistantData.data.playerToken.SetActive(true);
                     //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken = this.gameObject;
+                    PersistantData.data.playerToken = GameObject.FindGameObjectWithTag("Player");
                     playerToken.transform.SetParent(platform5.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken.transform.position = tokenTransform.position;
                     playerToken.transform.rotation = tokenTransform.rotation;
@@ -183,6 +197,7 @@ public class PlayerTokenMover : MonoBehaviour
                     //PersistantData.data.playerToken.SetActive(true);
                     //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken = this.gameObject;
+                    PersistantData.data.playerToken = GameObject.FindGameObjectWithTag("Player");
                     playerToken.transform.SetParent(platform6.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken.transform.position = tokenTransform.position;
                     playerToken.transform.rotation = tokenTransform.rotation;
@@ -202,6 +217,7 @@ public class PlayerTokenMover : MonoBehaviour
                     //PersistantData.data.playerToken.SetActive(true);
                     //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken = this.gameObject;
+                    PersistantData.data.playerToken = GameObject.FindGameObjectWithTag("Player");
                     playerToken.transform.SetParent(platform7.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken.transform.position = tokenTransform.position;
                     playerToken.transform.rotation = tokenTransform.rotation;
@@ -221,6 +237,7 @@ public class PlayerTokenMover : MonoBehaviour
                     //PersistantData.data.playerToken.SetActive(true);
                     //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken = this.gameObject;
+                    PersistantData.data.playerToken = GameObject.FindGameObjectWithTag("Player");
                     playerToken.transform.SetParent(platform8.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken.transform.position = tokenTransform.position;
                     playerToken.transform.rotation = tokenTransform.rotation;
@@ -240,6 +257,7 @@ public class PlayerTokenMover : MonoBehaviour
                     //PersistantData.data.playerToken.SetActive(true);
                     //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken = this.gameObject;
+                    PersistantData.data.playerToken = GameObject.FindGameObjectWithTag("Player");
                     playerToken.transform.SetParent(platform9.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken.transform.position = tokenTransform.position;
                     playerToken.transform.rotation = tokenTransform.rotation;
@@ -259,11 +277,13 @@ public class PlayerTokenMover : MonoBehaviour
                     //PersistantData.data.playerToken.SetActive(true);
                     //Instantiate(PersistantData.data.playerToken, platform4.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken = this.gameObject;
+                    PersistantData.data.playerToken = GameObject.FindGameObjectWithTag("Player");
                     playerToken.transform.SetParent(platform10.GetComponent<Platform>().playerPlatForm.transform);
                     playerToken.transform.position = tokenTransform.position;
                     playerToken.transform.rotation = tokenTransform.rotation;
                     playerToken.transform.localScale = tokenTransform.localScale;
                     FixToken();
+                    continueButton.SetActive(true);
                 }
                 PersistantData.data.inEvent = false;
             }

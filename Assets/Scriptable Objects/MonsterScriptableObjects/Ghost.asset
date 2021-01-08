@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDefeated: 0
   isBoss: 0
+  hasAbilities: 0
+  numberOfAbilities: 0
   monsterType: 0
   monsterName: Ghost
   monsterHealth: 100

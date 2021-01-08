@@ -5,6 +5,7 @@ using UnityEngine;
 public class MonsterInfo : MonoBehaviour
 {
     public MonsterSO monster;
+    public List<AbilitySO> monsterAbilties = new List<AbilitySO>();
 
     private void Update()
     {

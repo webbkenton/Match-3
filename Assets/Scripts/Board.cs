@@ -55,6 +55,11 @@ public class Board : MonoBehaviour
 
     private FindMatches findMatches;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        StartCoroutine(PersistantData.data.TransitionOut());
+    }
     void Start()
     {
         battleManger = FindObjectOfType<BattleManger>();
@@ -544,6 +549,15 @@ public class Board : MonoBehaviour
             battleManger.DecreasMonsterHealth(baseTileValue / 4);
             PersistantData.data.currency += (1);
             battleManger.IncreaseMonsterRage(1);
+            if (battleManger.rageEffect)
+            {
+                battleManger.DecreasMonsterHealth(baseTileValue / 4);
+                battleManger.rageEffect = false;
+            }
+            else
+            {
+                return;
+            }
         }
         else if (allIcons[column, row].tag == "HealthPotion")
         {
@@ -551,6 +565,10 @@ public class Board : MonoBehaviour
             soundManager.PlayPotions();
             PersistantData.data.health++;
             PersistantData.data.currency += (1);
+            if (battleManger.penUltimateHealEffect)
+            {
+                PersistantData.data.health += 3;
+            }
         }
         else if (allIcons[column, row].tag == "Defend")
         {
@@ -565,6 +583,10 @@ public class Board : MonoBehaviour
             soundManager.PlayPotions();
             PersistantData.data.mana += 4;
             PersistantData.data.currency += (1);
+            if (battleManger.penUltimateHealEffect)
+            {
+                PersistantData.data.mana += 3;
+            }
         }
         else if (allIcons[column, row].tag == "Magic")
         {
@@ -632,11 +654,6 @@ public class Board : MonoBehaviour
         yield return new WaitForSeconds(.35f);
         StartCoroutine(FillBoardCo());
         findMatches.FindAllMatches();
-        if (findMatches.currentMatches != null)
-        {
-            findMatches.FindAllMatches();
-            StartCoroutine(FillBoardCo());
-        }
     }
 
     public void RefillOnAbility()
@@ -705,6 +722,12 @@ public class Board : MonoBehaviour
                     allIcons[i, j] = piece;
                     piece.GetComponent<Icon>().row = j;
                     piece.GetComponent<Icon>().column = i;
+
+                    if (findMatches.currentMatches.Count >= 0)
+                    {
+                        findMatches.FindAllMatches();
+                        StartCoroutine(FillBoardCo());
+                    }
                 }
             }
         }

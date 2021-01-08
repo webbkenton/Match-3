@@ -42,7 +42,9 @@ public class HintManager : MonoBehaviour
                     {
                         if (board.SwitchAndCheck(i, j, Vector2.right))
                         {
+                            
                             possibleMoves.Add(board.allIcons[i, j]);
+                            //Debug.Log(possibleMoves);
                         }
                     }
                     if (j < board.height - 1)
@@ -64,6 +66,7 @@ public class HintManager : MonoBehaviour
         possibleMoves = FindAllMatches();
         if (possibleMoves.Count > 0)
         {
+            //Debug.Log(possibleMoves);
             int peiceToUse = Random.Range(0, possibleMoves.Count);
             return possibleMoves[peiceToUse];
         }
