@@ -90,7 +90,9 @@
     <Compile Include="Assets\Scripts\MonsterHolder.cs" />
     <Compile Include="Assets\Scripts\BattleManger.cs" />
     <Compile Include="Assets\Scripts\AbilityHolder.cs" />
+    <Compile Include="Assets\LifeTracker.cs" />
     <Compile Include="Assets\Scripts\PersistantData.cs" />
+    <Compile Include="Assets\TokenHolder.cs" />
     <Compile Include="Assets\Boardv2.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\SelectAbilities.cs" />
@@ -108,8 +110,6 @@
     <Compile Include="Assets\Scripts\IconSO.cs" />
     <Compile Include="Assets\PointsTracker.cs" />
     <Compile Include="Assets\Scripts\Icon.cs" />
-    <Compile Include="Assets\LifeTracker.cs" />
-    <Compile Include="Assets\TokenHolder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
