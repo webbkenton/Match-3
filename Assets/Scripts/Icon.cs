@@ -11,134 +11,140 @@ public class Icon : MonoBehaviour
     public int previousRow;
     public int targetX;
     public int targetY;
-
     public bool isMatched = false;
 
-    private HintManager hintManager;
-    private FindMatches findMatches;
-    private Board board;
+
+    private FindMatchesV2 findMatches;
+    private Boardv2 board;
     public GameObject otherIcon;
-    private Vector2 firstTouchPosition = Vector2.zero;
-    private Vector2 finalTouchPosition = Vector2.zero;
+    private Vector2 firstTouchPosition;
+    private Vector2 finalTouchPosition;
     private Vector2 tempPosition;
 
-
-
+    [Header("Swipe Stuff")]
     public float swipeAngle = 0;
-    public float swipeResist = .35f;
+    public float swipeResist = 1f;
+
+    [Header("Powerup Stuff")]
+    public bool isColorBomb;
+    public bool isColumnBomb;
+    public bool isRowBomb;
+    public GameObject rowArrow;
+    public GameObject columnArrow;
+    public GameObject colorBomb;
 
     public bool isTypeBomb;
-    //public bool isColumnBomb;
-    //public bool isRowBomb;
     public bool isStarBomb;
     public bool isAdjacentBomb;
-    //public GameObject rowArrow;
-    //public GameObject columnArrow;
+
     public GameObject starBomb;
     public GameObject typeBomb;
     public GameObject adjacentMarker;
     private BattleManger battleManger;
+    public GameObject selectedIcon;
 
-    // Start is called before the first frame update
+
+    // Use this for initialization
     void Start()
     {
-        hintManager = FindObjectOfType<HintManager>();
-        board = GameObject.FindWithTag("Board").GetComponent<Board>();
-        findMatches = FindObjectOfType<FindMatches>();
-        battleManger = GameObject.FindGameObjectWithTag("BattleManager").GetComponent<BattleManger>();
-        //isColumnBomb = false;
-        //isRowBomb = false;]
-        isStarBomb = false;
-        isTypeBomb = false;
-        isAdjacentBomb = false;
-        //board = FindObjectOfType<Board>();
+
+        isColumnBomb = false;
+        isRowBomb = false;
+
+        board = FindObjectOfType<Boardv2>();
+        findMatches = FindObjectOfType<FindMatchesV2>();
         //targetX = (int)transform.position.x;
         //targetY = (int)transform.position.y;
         //row = targetY;
         //column = targetX;
-        //previousColumn = column;
         //previousRow = row;
+        //previousColumn = column;
+
     }
 
-    //private void OnMouseOver()
-    //{
-    //    if (Input.GetMouseButtonDown(1))
-    //    {
-    //        isStarBomb = true;
-    //        GameObject marker = Instantiate(starBomb, transform.position, Quaternion.identity);
-    //        marker.transform.parent = this.transform;
-    //    }
-    //}
 
-    //this is for testing and debug only
+    //This is for testing and Debug only.
+    private void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            isColorBomb = true;
+            GameObject color = Instantiate(colorBomb, transform.position, Quaternion.identity);
+            color.transform.parent = this.transform;
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
     {
         /*
-        if (isMatched)
-        {
+        if(isMatched){
+            
             SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
-            mySprite.color = new Color(1f, 1f, 1f, .2f);
+            Color currentColor = mySprite.color;
+            mySprite.color = new Color(currentColor.r, currentColor.g, currentColor.b, .5f);
         }
         */
         targetX = column;
         targetY = row;
         if (Mathf.Abs(targetX - transform.position.x) > .1)
         {
-            //Move Towards Target
+            //Move Towards the target
             tempPosition = new Vector2(targetX, transform.position.y);
-            transform.position = Vector2.Lerp(transform.position, tempPosition, .30f);
-            if (board.allIcons[column, row] != this.gameObject)
+            transform.position = Vector2.Lerp(transform.position, tempPosition, .6f);
+            if (board.allDots[column, row] != this.gameObject)
             {
-                board.allIcons[column, row] = this.gameObject;
-                findMatches.FindAllMatches();
+                board.allDots[column, row] = this.gameObject;
             }
+            findMatches.FindAllMatches();
+
 
         }
         else
         {
-            //Directly Set Position
+            //Directly set the position
             tempPosition = new Vector2(targetX, transform.position.y);
             transform.position = tempPosition;
-            //board.allIcons[column, row] = this.gameObject;
-        }
 
+        }
         if (Mathf.Abs(targetY - transform.position.y) > .1)
         {
-            //Move Towards Target
+            //Move Towards the target
             tempPosition = new Vector2(transform.position.x, targetY);
-            transform.position = Vector2.Lerp(transform.position, tempPosition, .30f);
-            if (board.allIcons[column, row] != this.gameObject)
+            transform.position = Vector2.Lerp(transform.position, tempPosition, .6f);
+            if (board.allDots[column, row] != this.gameObject)
             {
-                board.allIcons[column, row] = this.gameObject;
-                findMatches.FindAllMatches();
+                board.allDots[column, row] = this.gameObject;
             }
-            
+            findMatches.FindAllMatches();
 
         }
         else
         {
-            //Directly Set Position
+            //Directly set the position
             tempPosition = new Vector2(transform.position.x, targetY);
             transform.position = tempPosition;
+
         }
+        //OnMouseOver();
     }
 
     public IEnumerator CheckMoveCo()
     {
-        if (isTypeBomb)
+        if (isColorBomb)
         {
+            //This piece is a color bomb, and the other piece is the color to destroy
             findMatches.MatchPiecesOfColor(otherIcon.tag);
             isMatched = true;
         }
-        else if (otherIcon.GetComponent<Icon>().isTypeBomb)
+        else if (otherIcon.GetComponent<Icon>().isColorBomb)
         {
+            //The other piece is a color bomb, and this piece has the color to destroy
             findMatches.MatchPiecesOfColor(this.gameObject.tag);
             otherIcon.GetComponent<Icon>().isMatched = true;
         }
-        //This is how long before the game confirms your move
-        yield return new WaitForSeconds(.15f);
+        yield return new WaitForSeconds(.5f);
         if (otherIcon != null)
         {
             if (!isMatched && !otherIcon.GetComponent<Icon>().isMatched)
@@ -147,32 +153,26 @@ public class Icon : MonoBehaviour
                 otherIcon.GetComponent<Icon>().column = column;
                 row = previousRow;
                 column = previousColumn;
-                //This is how long before the tiles switch back with no match
-                yield return new WaitForSeconds(.15f);
-                board.currentIcon = null;
+                yield return new WaitForSeconds(.5f);
+                board.currentDot = null;
                 board.currentState = GameState.move;
             }
             else
             {
                 board.DestroyMatches();
-                battleManger.CountTurn();
 
             }
             //otherIcon = null;
         }
 
     }
+
     private void OnMouseDown()
     {
-        if (hintManager != null)
-        {
-            hintManager.DestoryHint();
-        }
         if (board.currentState == GameState.move)
         {
             firstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
-
     }
 
     private void OnMouseUp()
@@ -181,7 +181,6 @@ public class Icon : MonoBehaviour
         {
             finalTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             CalculateAngle();
-            
         }
     }
 
@@ -189,10 +188,11 @@ public class Icon : MonoBehaviour
     {
         if (Mathf.Abs(finalTouchPosition.y - firstTouchPosition.y) > swipeResist || Mathf.Abs(finalTouchPosition.x - firstTouchPosition.x) > swipeResist)
         {
-            board.currentState = GameState.wait;
             swipeAngle = Mathf.Atan2(finalTouchPosition.y - firstTouchPosition.y, finalTouchPosition.x - firstTouchPosition.x) * 180 / Mathf.PI;
-            MoveTile();
-            board.currentIcon = this;
+            MovePieces();
+            board.currentState = GameState.wait;
+            board.currentDot = this;
+
         }
         else
         {
@@ -201,91 +201,56 @@ public class Icon : MonoBehaviour
         }
     }
 
-    void MovePiecesActual(Vector2 direction)
+    void MovePieces()
     {
-        otherIcon = board.allIcons[column + (int)direction.x, row + (int)direction.y];
-        previousColumn = column;
-        previousRow = row;
-        if (otherIcon != null)
+        if (swipeAngle > -45 && swipeAngle <= 45 && column < board.width - 1)
         {
-            otherIcon.GetComponent<Icon>().column += -1 * (int)direction.x;
-            otherIcon.GetComponent<Icon>().row += -1 * (int)direction.y;
-            column += (int)direction.x;
-            row += (int)direction.y;
-            StartCoroutine(CheckMoveCo());
-        }
-        else
-        {
-            board.currentState = GameState.move;
-        }
-    }
-
-    void MoveTile()
-    {
-        if (swipeAngle > -45 && swipeAngle <= 45 && column < board.width - 1)// right swipe
-        {
-            MovePiecesActual(Vector2.right);
-            /*otherIcon = board.allIcons[column + 1, row];
-            previousColumn = column;
+            //Right Swipe
+            otherIcon = board.allDots[column + 1, row];
             previousRow = row;
+            previousColumn = column;
             otherIcon.GetComponent<Icon>().column -= 1;
-            column += 1;*/
-        }
-        else
+            column += 1;
 
-        if (swipeAngle > 45 && swipeAngle <= 135 && row < board.height - 1)// up swipe
+        }
+        else if (swipeAngle > 45 && swipeAngle <= 135 && row < board.height - 1)
         {
-            MovePiecesActual(Vector2.up);
-            /*
-            otherIcon = board.allIcons[column, row +1 ];
-            previousColumn = column;
+            //Up Swipe
+            otherIcon = board.allDots[column, row + 1];
             previousRow = row;
+            previousColumn = column;
             otherIcon.GetComponent<Icon>().row -= 1;
             row += 1;
-            */
+
         }
-
-        else
-
-        if ((swipeAngle > 135 || swipeAngle <= -135) && column > 0)// left swipe
+        else if ((swipeAngle > 135 || swipeAngle <= -135) && column > 0)
         {
-            MovePiecesActual(Vector2.left);
-            /*
-            otherIcon = board.allIcons[column - 1, row];
-            previousColumn = column;
+            //Left Swipe
+            otherIcon = board.allDots[column - 1, row];
             previousRow = row;
+            previousColumn = column;
             otherIcon.GetComponent<Icon>().column += 1;
             column -= 1;
-            */
         }
-
-        else
-
-        if (swipeAngle < -45 && swipeAngle >= -135 && row > 0) // down swipe
+        else if (swipeAngle < -45 && swipeAngle >= -135 && row > 0)
         {
-            MovePiecesActual(Vector2.down);
-            /*
-            otherIcon = board.allIcons[column, row - 1];
-            previousColumn = column;
+            //Down Swipe
+            otherIcon = board.allDots[column, row - 1];
             previousRow = row;
+            previousColumn = column;
             otherIcon.GetComponent<Icon>().row += 1;
             row -= 1;
-            */
         }
-        else
-        {
-            board.currentState = GameState.move;
-        }
-        //StartCoroutine(CheckMoveCo());
 
+        StartCoroutine(CheckMoveCo());
     }
 
     void FindMatches()
     {
         if (column > 0 && column < board.width - 1)
         {
-            GameObject leftIcon1 = board.allIcons[column - 1, row];
-            GameObject rightIcon1 = board.allIcons[column + 1, row];
+            GameObject leftIcon1 = board.allDots[column - 1, row];
+            GameObject rightIcon1 = board.allDots[column + 1, row];
             if (leftIcon1 != null && rightIcon1 != null)
             {
                 if (leftIcon1.tag == this.gameObject.tag && rightIcon1.tag == this.gameObject.tag)
@@ -298,8 +263,8 @@ public class Icon : MonoBehaviour
         }
         if (row > 0 && row < board.height - 1)
         {
-            GameObject upIcon1 = board.allIcons[column, row + 1];
-            GameObject downIcon1 = board.allIcons[column, row - 1];
+            GameObject upIcon1 = board.allDots[column, row + 1];
+            GameObject downIcon1 = board.allDots[column, row - 1];
             if (upIcon1 != null && downIcon1 != null)
             {
                 if (upIcon1.tag == this.gameObject.tag && downIcon1.tag == this.gameObject.tag)
@@ -310,31 +275,29 @@ public class Icon : MonoBehaviour
                 }
             }
         }
+
     }
 
-    public void MakeStarBomb()
+    public void MakeRowBomb()
     {
-        if (!isTypeBomb && !isAdjacentBomb)
-        {
-            isStarBomb = true;
-            GameObject star = Instantiate(starBomb, transform.position, Quaternion.identity);
-            //1. There is an issue here with the Bomb object being instaniated on the wrong tile.
-            star.transform.parent = this.transform;
-            
-        }
-    }
-    
-    public void MakeTypeBomb()
-    {
-        if (!isStarBomb && !isAdjacentBomb)
-        {
-            isTypeBomb = true;
-            GameObject tBomb = Instantiate(typeBomb, transform.position, Quaternion.identity);
-            tBomb.transform.parent = this.transform;
-            this.gameObject.tag = "TypeBomb";
-        }
+        isRowBomb = true;
+        GameObject arrow = Instantiate(rowArrow, transform.position, Quaternion.identity);
+        arrow.transform.parent = this.transform;
     }
 
+    public void MakeColumnBomb()
+    {
+        isColumnBomb = true;
+        GameObject arrow = Instantiate(columnArrow, transform.position, Quaternion.identity);
+        arrow.transform.parent = this.transform;
+    }
+
+    public void MakeColorBomb()
+    {
+        isColorBomb = true;
+        GameObject color = Instantiate(colorBomb, transform.position, Quaternion.identity);
+        color.transform.parent = this.transform;
+    }
     public void MakeAdjacentBomb()
     {
         if (!isTypeBomb && !isStarBomb)
@@ -345,7 +308,27 @@ public class Icon : MonoBehaviour
 
         }
     }
+    public void MakeStarBomb()
+    {
+        if (!isTypeBomb && !isAdjacentBomb)
+        {
+            isStarBomb = true;
+            GameObject star = Instantiate(starBomb, transform.position, Quaternion.identity);
+            //1. There is an issue here with the Bomb object being instaniated on the wrong tile.
+            star.transform.parent = this.transform;
 
 
+        }
+    }
 
+    public void MakeTypeBomb()
+    {
+        if (!isStarBomb && !isAdjacentBomb)
+        {
+            isTypeBomb = true;
+            GameObject tBomb = Instantiate(typeBomb, transform.position, Quaternion.identity);
+            tBomb.transform.parent = this.transform;
+            this.gameObject.tag = "TypeBomb";
+        }
+    }
 }

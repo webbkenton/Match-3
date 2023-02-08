@@ -11,7 +11,7 @@ public class PlayerHud : MonoBehaviour
     public int experience;
     public float experienceToLevel;
     public GameObject talentTree;
-    public GameObject pointer;
+    //public GameObject pointer;
 
     public Text healthText;
     public Text manaText;
@@ -57,9 +57,9 @@ public class PlayerHud : MonoBehaviour
     IEnumerator disablePointer()
     {
         new WaitForSeconds(5f);
-        pointer.SetActive(true);
+        //pointer.SetActive(true);
         yield return new WaitForSeconds(15f);
-        pointer.SetActive(false);
+       // pointer.SetActive(false);
         PersistantData.data.newPointer = false;
     }
     public void OpenTalentTree()

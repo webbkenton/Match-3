@@ -1,21 +1,13 @@
 sceneSetups:
-- path: Assets/Scenes/MainMatch3.unity
+- path: Assets/Scenes/Shop Scene.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0
-- path: Assets/Scenes/LevelMap.unity
+- path: Assets/Scenes/StartMenu.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
-- path: Assets/Scenes/ChooseYourPath.unity
-  isLoaded: 0
-  isActive: 0
-  isSubScene: 0
-- path: Assets/Scenes/MainMenuPathofRedemption.unity
-  isLoaded: 0
-  isActive: 0
-  isSubScene: 0
-- path: Assets/Scenes/Level1.unity
+- path: Assets/Scenes/NewMap.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0

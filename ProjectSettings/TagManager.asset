@@ -54,6 +54,14 @@ TagManager:
   - PlayerAbility1
   - PlayerAbility2
   - PlayerAbility3
+  - LeftPath
+  - RightPath
+  - MiddlePath
+  - Map
+  - GameManager
+  - MatchFinder
+  - Match3Enemy
+  - UIManager
   layers:
   - Default
   - TransparentFX
@@ -105,4 +113,7 @@ TagManager:
     locked: 0
   - name: Walls
     uniqueID: 3146914939
+    locked: 0
+  - name: Decor
+    uniqueID: 2321861069
     locked: 0

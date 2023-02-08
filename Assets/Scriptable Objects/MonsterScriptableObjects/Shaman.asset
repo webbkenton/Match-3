@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shaman
   m_EditorClassIdentifier: 
   isDefeated: 0
-  isBoss: 1
+  isBoss: 0
   hasAbilities: 1
   numberOfAbilities: 1
   monsterType: 0

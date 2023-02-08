@@ -32,6 +32,7 @@ public class Board : MonoBehaviour
     public int offSet;
     //public float refillDelay = 0.25f;
     private bool[,] blankSpaces;
+    private bool shuffling;
 
 
     public GameObject tilePrefab;
@@ -50,16 +51,20 @@ public class Board : MonoBehaviour
     private CurrencyManager currencyManager;
 
     public GameObject adjacentParticle;
+    public GameObject deadlockedButton;
     //private ScriptableObject iconSO;
     public int[] scoreGoals;
 
-    private FindMatches findMatches;
+    public FindMatches findMatches;
     // Start is called before the first frame update
 
-    private void Awake()
-    {
-        StartCoroutine(PersistantData.data.TransitionOut());
-    }
+    public int maxRows;
+    public int maxColumns;
+
+    //private void Awake()
+    //{
+    //    StartCoroutine(PersistantData.data.TransitionOut());
+    //}
     void Start()
     {
         battleManger = FindObjectOfType<BattleManger>();
@@ -83,6 +88,7 @@ public class Board : MonoBehaviour
             if (boardLayout[i].tileKind == TileKind.Blank)
             {
                 blankSpaces[boardLayout[i].x, boardLayout[i].y] = true;
+                Debug.Log(blankSpaces[boardLayout[i].x, boardLayout[i].y]);
             }
         }
     }
@@ -108,7 +114,7 @@ public class Board : MonoBehaviour
     {
         //GenerateBoardTiles();
         GenerateBlankSpaces();
-        GenerateBreakableTiles();
+        //GenerateBreakableTiles();
         
         for (int i = 0; i < width; i++)
         {
@@ -140,22 +146,6 @@ public class Board : MonoBehaviour
         }
         
     }
-
-    /*private void KeepChecking()
-    {
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if (allIcons[i, j].GetComponent<Icon>().isMatched != false)
-                {
-                    DestroyMatches();
-                }
-            }
-        }
-    }*/
-
-
     private bool MatchesAt(int column, int row, GameObject piece)
     {
         if (column > 1 && row > 1)
@@ -260,142 +250,7 @@ public class Board : MonoBehaviour
         }
         return 0;
     }
-
-    private void CheckToMakeMoreBombs()
-    {
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if (allIcons[i, j].GetComponent<Icon>() == currentIcon)
-                {
-                    GameObject currentObject = allIcons[i, j];
-                    if (findMatches.currentMatches.Contains(currentObject))
-                    {
-                        CheckToMakeBombs();
-                    }
-                }
-                else
-                {
-                    Debug.Log("No Current Icon");
-                    GameObject matchedObject = findMatches.currentMatches[0];
-                    Icon matchedIcon = matchedObject.GetComponent<Icon>();
-
-                    List<GameObject> matchCopy = findMatches.currentMatches as List<GameObject>;
-                    int column = matchedIcon.column;
-                    int row = matchedIcon.row;
-                    int columnMatch = 0;
-                    int rowMatch = 0;
-                    //Cycle though the remaining tiles
-                    for (int k = 0; k < matchCopy.Count; k++)
-                    {
-                        Icon nextIcon = matchCopy[k].GetComponent<Icon>();
-                        if (nextIcon == matchedIcon)
-                        {
-                            continue;
-                        }
-                        if (nextIcon.column == matchedIcon.column && nextIcon.CompareTag(matchedIcon.tag))
-                        {
-                            columnMatch++;
-                        }
-                        if (nextIcon.row == matchedIcon.row && nextIcon.CompareTag(matchedIcon.tag))
-                        {
-                            rowMatch++;
-                        }
-                    }
-                    //Return 3 if Adjacent
-                    //Return 2 if Star
-                    //Return 1 if Type Bomb
-                    if (columnMatch == 4 || rowMatch == 4)
-                    {
-                        if (currentIcon == null)
-                        {
-                            if (matchedIcon != null)
-                            {
-                                if (matchedIcon.isMatched)
-                                {
-                                    if (!matchedIcon.isTypeBomb)
-                                    {
-                                        matchedIcon.isMatched = false;
-                                        matchedIcon.MakeTypeBomb();
-                                        battleManger.EnemyDamaged();
-                                    }
-                                }
-                                /*else
-                                {
-                                    if (currentIcon.otherIcon != null)
-                                    {
-                                        Icon otherIcon = currentIcon.otherIcon.GetComponent<Icon>();
-                                        if (otherIcon.isMatched)
-                                        {
-                                            if (!otherIcon.isTypeBomb)
-                                            {
-                                                otherIcon.isMatched = false;
-                                                otherIcon.MakeTypeBomb();
-                                                battleManger.EnemyDamaged();
-                                            }
-                                        }
-                                    }
-                                }*/
-                            }
-                        }
-
-                    }
-                    else if (columnMatch >= 2 && rowMatch >= 2)
-                    {
-                        if (columnMatch < 4 || rowMatch < 4)
-                        {
-                            if (currentIcon == null)
-                            {
-                                if (matchedIcon != null)
-                                {
-                                    if (matchedIcon.isMatched)
-                                    {
-                                        matchedIcon.isMatched = false;
-                                        matchedIcon.MakeStarBomb();
-                                        battleManger.EnemyDamaged();
-                                        //Debug.Log("Star Bomb Made");
-
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    else if (columnMatch >= 3 || rowMatch >= 3)
-                    {
-                        if (columnMatch < 4 || rowMatch < 4)
-                        {
-                            if (columnMatch == 3 || rowMatch == 3)
-                            {
-                                if (currentIcon == null)
-                                {
-                                    if (matchedIcon != null)
-                                    {
-                                        if (matchedIcon.isMatched)
-                                        {
-                                            if (!matchedIcon.isAdjacentBomb)
-                                            {
-                                                matchedIcon.isMatched = false;
-                                                matchedIcon.MakeAdjacentBomb();
-                                                battleManger.EnemyDamaged();
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-                        
-                    
-
-                
-            
-
-         
+                         
     
     private void CheckToMakeBombs()
     {
@@ -500,27 +355,20 @@ public class Board : MonoBehaviour
     {
         if (allIcons[column, row].GetComponent<Icon>().isMatched)
         {
+            //Debug.Log("Board:503 Icon.ismatched");
             if (breakableTiles[column, row] != null)
             {
-                breakableTiles[column, row].TakeBreak(1);
-                if (breakableTiles[column, row].breakPoints <= 0)
+                breakableTiles[column, row].TakeDamage(1);
+                if (breakableTiles[column, row].hitPoints <= 0)
                 {
                     breakableTiles[column, row] = null;
                 }
             }
             CheckGemType(column, row);
-            //Does sound manager exist
-            //if (soundManager != null)
-            //{
-            //    soundManager.PlayDestroyNoise();
-            //}
             GameObject particle = Instantiate(destoryEffect, allIcons[column, row].transform.position, Quaternion.identity);
             Destroy(particle, .5f);
             Destroy(allIcons[column, row]);
             scoreManger.IncreaseScore(baseTileValue * streakValue);
-            //battleManger.DecreasMonsterHealth(baseTileValue / 5);
-            //battleManger.IncreaseMonsterRage(1);
-            //currencyManager.IncreaseCurrency(1);
             allIcons[column, row] = null;
             currentIcon = null;
         }
@@ -538,7 +386,7 @@ public class Board : MonoBehaviour
         {
             // Do the base attack
             soundManager.PlaySlash();
-            battleManger.DecreasMonsterHealth(baseTileValue / 10);
+            battleManger.DecreaseMonsterHealth(baseTileValue / 10);
             currencyManager.IncreaseCurrency(1);
             battleManger.IncreaseMonsterRage(1);
         }
@@ -546,12 +394,12 @@ public class Board : MonoBehaviour
         {
             // Do base attack * 1.5
             soundManager.PlayHeavy();
-            battleManger.DecreasMonsterHealth(baseTileValue / 4);
+            battleManger.DecreaseMonsterHealth(baseTileValue / 4);
             PersistantData.data.currency += (1);
             battleManger.IncreaseMonsterRage(1);
             if (battleManger.rageEffect)
             {
-                battleManger.DecreasMonsterHealth(baseTileValue / 4);
+                battleManger.DecreaseMonsterHealth(baseTileValue / 4);
                 battleManger.rageEffect = false;
             }
             else
@@ -591,7 +439,7 @@ public class Board : MonoBehaviour
         else if (allIcons[column, row].tag == "Magic")
         {
             soundManager.PlayMagic();
-            battleManger.DecreasMonsterHealth(baseTileValue / 10);
+            battleManger.DecreaseMonsterHealth(baseTileValue / 10);
             PersistantData.data.currency += (1);
             battleManger.IncreaseMonsterRage(1);
         }
@@ -608,7 +456,7 @@ public class Board : MonoBehaviour
         if (findMatches.currentMatches.Count >= 3) //Findmatches.count is > 3 so destroy matches should have been called
         {
             CheckToMakeBombs();
-            CheckToMakeMoreBombs();
+            //CheckToMakeMoreBombs();
         }
         findMatches.currentMatches.Clear();
         for (int i = 0; i < width; i++)
@@ -629,7 +477,7 @@ public class Board : MonoBehaviour
     private IEnumerator DecreaseRowCo2()
     {
         //This one should delay the Rows decreasing
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(.1f);
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
@@ -707,9 +555,10 @@ public class Board : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
-                if (allIcons[i, j] == null && !blankSpaces[i,j])
+                if (allIcons[i, j] == null)
                 {
                     Vector2 tempPostion = new Vector2(i, j + offSet);
+                    //Debug.Log(tempPostion);
                     int iconToUse = Random.Range(0, icons.Length);
                     int maxIterations = 0;
                     while (MatchesAt(i, j, icons[iconToUse]) && maxIterations < 100)
@@ -727,6 +576,7 @@ public class Board : MonoBehaviour
                     {
                         findMatches.FindAllMatches();
                         StartCoroutine(FillBoardCo());
+                        CheckToMakeBombs();
                     }
                 }
             }
@@ -753,44 +603,72 @@ public class Board : MonoBehaviour
         return false;
     }
 
+    //private IEnumerator FillBoardCo()
+    //{
+    //    yield return new WaitForSeconds(.2f);
+    //    RefillBoard();
+    //    //Debug.Log("Board Refilled");
+
+    //    while (MatchesOnBoard())
+    //    {
+    //        //What does this one do
+    //        yield return new WaitForSeconds(.2f);
+    //        //Debug.Log("Matches On Board Started");
+    //        streakValue++;
+    //        DestroyMatches();
+    //        yield return new WaitForSeconds(.1f);
+    //        MatchesOnBoard();
+
+    //    }
+
+    //    //findMatches.currentMatches.Clear();
+    //    //Debug.Log("Cleared Matches");
+    //    currentIcon = null;
+
+
+    //    if (IsDeadLocked())
+    //    {
+    //        yield return new WaitForSeconds(1f);
+    //        ShuffleBoard();
+    //        Debug.Log("DeadLocked!!!");
+    //    }
+    //    yield return new WaitForSeconds(.1f);
+    //    currentState = GameState.move;
+    //    streakValue = 1;
+
+    //}
+
     private IEnumerator FillBoardCo()
     {
-        yield return new WaitForSeconds(.25f);
         RefillBoard();
-        //Debug.Log("Board Refilled");
-        
-        while(MatchesOnBoard())
+        yield return new WaitForSeconds(.25f);
+
+        while (MatchesOnBoard())
         {
-            yield return new WaitForSeconds(.35f);
-            //Debug.Log("Matches On Board Started");
-            streakValue ++;
+            yield return new WaitForSeconds(.25f);
             DestroyMatches();
-            yield return new WaitForSeconds(1f);
-            MatchesOnBoard();
-            
         }
-
-        //findMatches.currentMatches.Clear();
-        //Debug.Log("Cleared Matches");
+        findMatches.currentMatches.Clear();
         currentIcon = null;
-        
+        yield return new WaitForSeconds(.35f);
+        currentState = GameState.move;
+        shuffling = false;
 
+        yield return new WaitForSeconds(5f);
         if (IsDeadLocked())
         {
-            yield return new WaitForSeconds(1f);
-            ShuffleBoard();
-            Debug.Log("DeadLocked!!!");
+            deadlockedButton.SetActive(true);
+            Debug.Log("Deadlocked");
         }
-        yield return new WaitForSeconds(.3f);
-        currentState = GameState.move;
-        streakValue = 1;
-        
     }
 
     private void SwitchTile(int column, int row, Vector2 direction)
     {
+        //Take the second piece and save it in a holder
         GameObject holder = allIcons[column + (int)direction.x, row + (int)direction.y] as GameObject;
+        //switching the first dot to be the second position
         allIcons[column + (int)direction.x, row + (int)direction.y] = allIcons[column, row];
+        //Set the first dot to be the second dot
         allIcons[column, row] = holder;
     }
 
@@ -868,53 +746,69 @@ public class Board : MonoBehaviour
                             return false;
                         }
                     }
+                    if (j < height + 2)
+                    {
+                        if (SwitchAndCheck(i, j, Vector2.down))
+                        {
+                            return false;
+                        }
+                    }
+                    if (i < height + 2)
+                    {
+                        if (SwitchAndCheck(i, j, Vector2.left))
+                        {
+                            return false;
+                        }
+                    }
                 }
             }
         }
         return true;
     }
-    private void ShuffleBoard()
+    public void ShuffleBoard()
     {
-        List<GameObject> newBoard = new List<GameObject>();
-        for (int i = 0; i < width; i++)
+        if (IsDeadLocked() && !shuffling)
         {
-            for (int j = 0; j < height; j++)
+            List<GameObject> newBoard = new List<GameObject>();
+            for (int i = 0; i < width; i++)
             {
-                if (allIcons[i, j] != null)
+                for (int j = 0; j < height; j++)
                 {
-                    newBoard.Add(allIcons[i, j]);
-                }
-            }
-        }
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if (!blankSpaces[i, j])
-                {
-                    int pieceToUse = Random.Range(0, newBoard.Count);
-                    
-
-                    int maxIteration = 0;
-                    while (MatchesAt(i, j, newBoard[pieceToUse]) && maxIteration < 100)
+                    if (allIcons[i, j] != null)
                     {
-                        pieceToUse = Random.Range(0, newBoard.Count);
-                        maxIteration++;
+                        newBoard.Add(allIcons[i, j]);
                     }
-                    Icon piece = newBoard[pieceToUse].GetComponent<Icon>();
-                    maxIteration = 0;
-
-
-                    piece.column = i;
-                    piece.row = j;
-                    allIcons[i, j] = newBoard[pieceToUse];
-                    newBoard.Remove(newBoard[pieceToUse]);
                 }
             }
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    if (!blankSpaces[i, j])
+                    {
+                        int pieceToUse = Random.Range(0, newBoard.Count);
+
+
+                        int maxIteration = 0;
+                        while (MatchesAt(i, j, newBoard[pieceToUse]) && maxIteration < 100)
+                        {
+                            pieceToUse = Random.Range(0, newBoard.Count);
+                            maxIteration++;
+                        }
+                        Icon piece = newBoard[pieceToUse].GetComponent<Icon>();
+                        maxIteration = 0;
+
+
+                        piece.column = i;
+                        piece.row = j;
+                        allIcons[i, j] = newBoard[pieceToUse];
+                        newBoard.Remove(newBoard[pieceToUse]);
+                    }
+                }
+            }
+            deadlockedButton.SetActive(false);
+            shuffling = true;
         }
-        if (IsDeadLocked())
-        {
-            ShuffleBoard();
-        }
+
     }
 }

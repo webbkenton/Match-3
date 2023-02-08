@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5d329e3cf00be4fb9483288222a111, type: 3}
+  m_Name: MarshHowler
+  m_EditorClassIdentifier: 
+  isDefeated: 1
+  isBoss: 0
+  hasAbilities: 0
+  numberOfAbilities: 0
+  monsterType: 0
+  monsterName: Swamp Caller
+  monsterHealth: 0
+  monsterKillValue: 0
+  monsterKillXP: 0
+  monsterImage: {fileID: 0}
+  rageCounter: 0
+  monsterNoise: {fileID: 0}
+  monsterAttackSound: {fileID: 0}

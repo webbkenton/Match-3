@@ -5,13 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerSelect : MonoBehaviour
 {
-    public Animator Goldselected;
+    //public Animator Goldselected;
     //public GameObject transition;
-
-    private void Awake()
-    {
-        PersistantData.data.StartCoroutine(PersistantData.data.TransitionOut());
-    }
     public void StartGold()
     {
         StartCoroutine(ChooseCharacter());
@@ -21,6 +16,10 @@ public class PlayerSelect : MonoBehaviour
     {
         PersistantData.data.StartCoroutine(PersistantData.data.TransitionIn());
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene("LevelMap");
+        PersistantData.data.playerToken.SetActive(true);
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuScript>().CharacterSelectionUI.SetActive(false);
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuScript>().StartMenuHolderUI.SetActive(false);
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuScript>().gameStarted = true;
+        SceneManager.LoadScene("NewMap");
     }
 }

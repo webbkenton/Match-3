@@ -70,8 +70,8 @@ public class AbilityHolder : MonoBehaviour
     }
     private void Update()
     {
-        AbilityColor();
-        OffCD();
+        //AbilityColor();
+        //OffCD();
         FixAbility();
         UltimateHealEffect();
         PenUltimateRageEffect();
@@ -108,15 +108,15 @@ public class AbilityHolder : MonoBehaviour
         abilityReady.SetActive(false);
     }*/    
 
-    private void OffCD()
-    {
-        if (battleManager.turnCounter >= abilitySO.coolDownStartTurn + abilitySO.coolDownTime)
-        {
-            this.GetComponent<Button>().interactable = true;
-            currentRemainder = 0;
-            currentCount = 0;
-        }
-    }
+    //private void offcd()
+    //{
+    //    if (battlemanager.turncounter >= abilityso.cooldownstartturn + abilityso.cooldowntime)
+    //    {
+    //        this.getcomponent<button>().interactable = true;
+    //        currentremainder = 0;
+    //        currentcount = 0;
+    //    }
+    //}
 
     private void CleanUpAbility()
     {

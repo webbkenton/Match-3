@@ -16,6 +16,6 @@ public class MonsterInfo : MonoBehaviour
     }
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+       //DontDestroyOnLoad(this.gameObject);
     }
 }

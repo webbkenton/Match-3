@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5d329e3cf00be4fb9483288222a111, type: 3}
   m_Name: LichBoss
   m_EditorClassIdentifier: 
-  isDefeated: 0
-  isBoss: 1
+  isDefeated: 1
+  isBoss: 0
   hasAbilities: 1
   numberOfAbilities: 1
   monsterType: 0
