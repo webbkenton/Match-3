@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PersistantData : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class PersistantData : MonoBehaviour
     public float maxMana;
 
     public Vector3 playerPosition;
- 
+
     public bool selectingAbility;
     public bool newPointer;
     public bool tutorial;
@@ -52,7 +53,10 @@ public class PersistantData : MonoBehaviour
     public GameObject PlayerHolder;
     public GameObject EnemyWorldToken;
 
+    public Canvas UICanvas;
+
     private GameObject map;
+    private Camera canvasCamera;
 
 
     private void Update()
@@ -80,6 +84,8 @@ public class PersistantData : MonoBehaviour
         {
             playerToken = GameObject.FindGameObjectWithTag("Player");
         }
+
+        FindCamera();
     }
 
     public IEnumerator TransitionOut()
@@ -142,7 +148,7 @@ public class PersistantData : MonoBehaviour
         //Debug.Log("Level Loaded");
         Debug.Log(scene.name);
         //Debug.Log(mode);
-        if (scene.name == "NewMap") 
+        if (scene.name == "NewMap")
         {
             string columnName = playerToken.GetComponent<MoveTowardsTest>().selectedColumn;
             playerToken.GetComponent<LifeTracker>().TokenHolderUIBox.SetActive(true);
@@ -154,9 +160,9 @@ public class PersistantData : MonoBehaviour
             else
             {
                 playerToken.transform.position = GameObject.FindGameObjectWithTag(columnName).GetComponent<ColumnTracker>().TokenHolder.transform.position;
-            }   
+            }
             playerToken.transform.position = new Vector3(playerToken.transform.position.x, playerToken.transform.position.y, 0);
-        //    PlayerHolder.SetActive(true); 
+            //    PlayerHolder.SetActive(true); 
         }
         StartCoroutine(TransitionOut());
 
@@ -166,7 +172,7 @@ public class PersistantData : MonoBehaviour
     private void Awake()
     {
         //transitionOut();
-        
+
         if (data == null)
         {
             data = this;
@@ -225,5 +231,22 @@ public class PersistantData : MonoBehaviour
         }
     }
 
-   
+    public void AssignCamera()
+    {
+        canvasCamera.transform.SetParent(transform); //move back to don't destroy root or using don'tdestroyonload object
+        SceneManager.MoveGameObjectToScene(canvasCamera.gameObject, SceneManager.GetActiveScene());
+    }
+    private void FindCamera()
+    {
+        if (UICanvas.worldCamera == null)
+        {
+            canvasCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+            Debug.Log(canvasCamera);
+            UICanvas.worldCamera = canvasCamera;
+        }
+    }
+
+
+
+
 }
