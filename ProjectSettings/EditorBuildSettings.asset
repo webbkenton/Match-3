@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 1450feca582ca3442b18d26728a27dbf
   - enabled: 1
-    path: Assets/Scenes/NewMap.unity
-    guid: e1e41777b6413864396b67f1e6dcfb26
+    path: Assets/Scenes/KethrilLaunchScene.unity
+    guid: 2dc7036f3e73fa749abd4345041519ac
+  - enabled: 1
+    path: Assets/Scenes/Town.unity
+    guid: 271f90f263b5e88448bcdc2b4738a4b4
   - enabled: 1
     path: Assets/Scenes/MainMatch3.unity
     guid: d50f72c99a36ee943bff356928995d3d

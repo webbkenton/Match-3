@@ -45,14 +45,14 @@ public class FightTrigger : MonoBehaviour
     {
         currentScene = SceneManager.GetActiveScene();
         sceneName = currentScene.name;
-        PersistantData.data.EnemyWorldToken = this.gameObject;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<LevelTracker>().enemy = this.gameObject;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<LevelTracker>().currentPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        //PersistantData.data.EnemyWorldToken = this.gameObject; --No Longer Works With New Map Configuration
+        //GameObject.FindGameObjectWithTag("Player").GetComponent<LevelTracker>().enemy = this.gameObject;
+        //GameObject.FindGameObjectWithTag("Player").GetComponent<LevelTracker>().currentPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         GameObject.FindGameObjectWithTag("Player").GetComponent<MoveTowardsTest>().inCombat = true;
         GameObject.FindGameObjectWithTag("Player").GetComponent<LevelTracker>().currentLevel = sceneName;
-        this.gameObject.GetComponentInParent<ColumnTracker>().TokenHolder = this.GetComponent<IconIdle>().tokenHolder;
+        //this.gameObject.GetComponentInParent<ColumnTracker>().TokenHolder = this.GetComponent<IconIdle>().tokenHolder;
     }
-    private void StartFight()
+    public void StartFight()
     {
         if (!inCombat && !defeated)
         {
@@ -65,7 +65,7 @@ public class FightTrigger : MonoBehaviour
     {
         StartCoroutine(PersistantData.data.TransitionIn());
         yield return new WaitForSeconds(2f);
-        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().map.transform.localScale = new Vector3(0, 0, 0);
+        //GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().map.transform.localScale = new Vector3(0, 0, 0);
         GameObject.FindGameObjectWithTag("Player").transform.localScale = new Vector3(0, 0, 0);
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuScript>().Match3UI.SetActive(true);
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuScript>().Match3Board.SetActive(true);

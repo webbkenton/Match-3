@@ -130,7 +130,7 @@ public class BattleManger : MonoBehaviour
     public void GetMonsterInfo()
     {
         GetInfo();
-        monsterSO = enemy.GetComponent<MonsterPlaceholderOnIcon>().monsterSO;
+        monsterSO = enemy.GetComponent<MonsterInfo>().monster;
         monsterType = monsterSO.monsterType;
         monsterName.text = monsterSO.monsterName;
         monsterHealth = monsterSO.monsterHealth;
@@ -381,7 +381,7 @@ public class BattleManger : MonoBehaviour
         PersistantData.data.totalCompleteLevels++;
         //PersistantData.data.gameObject.SetActiveRecursively(true);
         PersistantData.data.playerToken = GameObject.FindGameObjectWithTag("Player");
-        player.GetComponent<LevelTracker>().enemy.GetComponent<FightTrigger>().defeated = true;
+        //player.GetComponent<LevelTracker>().enemy.GetComponent<FightTrigger>().defeated = true;
         player.GetComponent<MoveTowardsTest>().inCombat = false;
         //GameObject.FindGameObjectWithTag("Claim").GetComponent<Button>().enabled = false;
         endPanel.SetActive(false);
@@ -389,8 +389,8 @@ public class BattleManger : MonoBehaviour
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuScript>().Match3UI.SetActive(false);
         //StartCoroutine(PersistantData.data.TransitionIn());
         new WaitForSeconds(3f);
-        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().RestoreTheMap();
-        player.GetComponent<LevelTracker>().enemy.GetComponent<FightTrigger>().inCombat = false;
+        //GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().RestoreTheMap();
+        //player.GetComponent<LevelTracker>().enemy.GetComponent<FightTrigger>().inCombat = false;
         player.GetComponent<PointsTracker>().points++;
         PersistantData.data.returnToMap = true;
         SceneManager.LoadScene(playerScene);

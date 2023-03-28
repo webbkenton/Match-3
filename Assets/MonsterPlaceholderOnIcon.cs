@@ -13,10 +13,4 @@ public class MonsterPlaceholderOnIcon : MonoBehaviour
         randomMonster = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().level1Monsters[randomMonsterNumber];
         monsterSO = randomMonster.GetComponent<MonsterInfo>().monster;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

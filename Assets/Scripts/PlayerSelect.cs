@@ -12,6 +12,13 @@ public class PlayerSelect : MonoBehaviour
         StartCoroutine(ChooseCharacter());
     }
 
+    public void KethrilStart()
+    {
+        {
+            StartCoroutine(KethrilSelected());
+        }
+    }
+
     private IEnumerator ChooseCharacter()
     {
         PersistantData.data.StartCoroutine(PersistantData.data.TransitionIn());
@@ -20,6 +27,17 @@ public class PlayerSelect : MonoBehaviour
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuScript>().CharacterSelectionUI.SetActive(false);
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuScript>().StartMenuHolderUI.SetActive(false);
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuScript>().gameStarted = true;
-        SceneManager.LoadScene("NewMap");
+        SceneManager.LoadScene("Town");
+    }
+
+    private IEnumerator KethrilSelected()
+    {
+        PersistantData.data.StartCoroutine(PersistantData.data.TransitionIn());
+        yield return new WaitForSeconds(3f);
+        PersistantData.data.playerToken.SetActive(true);
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuScript>().CharacterSelectionUI.SetActive(false);
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuScript>().StartMenuHolderUI.SetActive(false);
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuScript>().gameStarted = true;
+        SceneManager.LoadScene("KethrilLaunchScene");
     }
 }

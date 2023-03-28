@@ -62,6 +62,7 @@ TagManager:
   - MatchFinder
   - Match3Enemy
   - UIManager
+  - SceneHandler
   layers:
   - Default
   - TransparentFX

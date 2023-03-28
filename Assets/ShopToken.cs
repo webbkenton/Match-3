@@ -6,25 +6,19 @@ using UnityEngine.SceneManagement;
 public class ShopToken : MonoBehaviour
 {
     public bool playerSelected;
-    // Update is called once per frame
-    void Update()
+    public string sceneName;
+    private Scene currentScene;
+    public void OpenShop()
     {
-
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") && this.playerSelected == true)
-        {
-            StartCoroutine(LoadLevel());
-        }
+        StartCoroutine(LoadLevel());
     }
     public IEnumerator LoadLevel()
     {
+        currentScene = SceneManager.GetActiveScene();
+        sceneName = currentScene.name;
         StartCoroutine(PersistantData.data.TransitionIn());
         yield return new WaitForSeconds(2f);
-        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().map.transform.localScale = new Vector3(0, 0, 0);
-        //GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuScript>().Match3UI.SetActive(true);
-        //GameObject.FindGameObjectWithTag("UIManager").GetComponent<MenuScript>().Match3Board.SetActive(true);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<LevelTracker>().currentLevel = sceneName;
         SceneManager.LoadScene("Shop Scene");
     }
 }

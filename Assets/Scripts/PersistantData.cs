@@ -77,7 +77,7 @@ public class PersistantData : MonoBehaviour
         }
         ObjectiveComplete();
         LevelUp();
-        DupilicateInScene();
+        //DupilicateInScene();
 
 
         if (playerToken == null && inEvent == false)
@@ -112,25 +112,25 @@ public class PersistantData : MonoBehaviour
         //StartCoroutine(TransitionOut());
     }
 
-    private void DupilicateInScene()
-    {
-        if (playerToken.activeInHierarchy)
-        {
-            if (GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().map != null && SceneManager.GetActiveScene().name == "NewMap" && returnToMap)
-            {
-                Scene currentScene = SceneManager.GetSceneByName("NewMap");
-                GameObject[] gameObjects = currentScene.GetRootGameObjects();
-                foreach (GameObject item in gameObjects)
-                {
-                    if (item.name == "Map")
-                    {
-                        GameObject.Destroy(item);
-                    }
-                }
-            }
+    //private void DupilicateInScene()
+    //{
+    //    if (playerToken.activeInHierarchy)
+    //    {
+    //        if (GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().map != null && SceneManager.GetActiveScene().name == "NewMap" && returnToMap)
+    //        {
+    //            Scene currentScene = SceneManager.GetSceneByName("NewMap");
+    //            GameObject[] gameObjects = currentScene.GetRootGameObjects();
+    //            foreach (GameObject item in gameObjects)
+    //            {
+    //                if (item.name == "Map")
+    //                {
+    //                    GameObject.Destroy(item);
+    //                }
+    //            }
+    //        }
 
-        }
-    }
+    //    }
+    //}
     void OnEnable()
     {
         //Tell our 'OnLevelFinishedLoading' function to start listening for a scene change as soon as this script is enabled.
