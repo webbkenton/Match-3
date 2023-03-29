@@ -20,4 +20,52 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Shop Scene.unity
     guid: 032211fcffbab0d4fb1fa549fa2a65a5
+  - enabled: 1
+    path: Assets/Scenes/KethrilVSEadric/Chapter1/KvES1Ch1.unity
+    guid: b4a374b000e383e4c8818e911dd2d356
+  - enabled: 1
+    path: Assets/Scenes/KethrilVSEadric/Chapter1/KvES2Ch1.unity
+    guid: 8ece479d455aa5a4a997ca026d5da0e6
+  - enabled: 1
+    path: Assets/Scenes/KethrilVSEadric/Chapter1/KvES3Ch1.unity
+    guid: 9b295a2378c2a754980ef9e1a2a98dfc
+  - enabled: 1
+    path: Assets/Scenes/KethrilVSEadric/Chapter1/KvES4Ch1.unity
+    guid: c81a9286393ce234995b8a58c49c35bb
+  - enabled: 1
+    path: Assets/Scenes/KethrilVSEadric/Chapter2/KvES1Ch2.unity
+    guid: ca9b4f3e36dfe954bb689f8e74756129
+  - enabled: 1
+    path: Assets/Scenes/KethrilVSEadric/Chapter2/KvES2Ch2.unity
+    guid: 1ed971e8da806c24da59c064e389784b
+  - enabled: 1
+    path: Assets/Scenes/KethrilVSEadric/Chapter2/KvES3Ch2.unity
+    guid: 275192eb5b1eb8f459808f55c778ff8f
+  - enabled: 1
+    path: Assets/Scenes/KethrilVSEadric/Chapter2/KvES4Ch2.unity
+    guid: 8417739b536a7554ebdb452e5bdbaaa0
+  - enabled: 1
+    path: Assets/Scenes/KethrilVSEadric/Chapter3/KvES1Ch3.unity
+    guid: ebd7c1ddba2d39b4fb3fa395a61d35ed
+  - enabled: 1
+    path: Assets/Scenes/KethrilVSEadric/Chapter3/KvES2Ch3.unity
+    guid: a9aeebc8e4e1c614aa7b2f551e719a3b
+  - enabled: 1
+    path: Assets/Scenes/KethrilVSEadric/Chapter3/KvES3Ch3.unity
+    guid: c156faf839a16624987d97a74d2700f1
+  - enabled: 1
+    path: Assets/Scenes/KethrilVSEadric/Chapter3/KvES4Ch3.unity
+    guid: 29d6ac5f73eae0244b413e6610d4fb5d
+  - enabled: 1
+    path: Assets/Scenes/KethrilVSEadric/Chapter4/KvES1Ch4.unity
+    guid: 08b7602f450a28f4f91c7d6a2b46d39e
+  - enabled: 1
+    path: Assets/Scenes/KethrilVSEadric/Chapter4/KvES2Ch4.unity
+    guid: ae29c435fb67dbb41981b1607f587d65
+  - enabled: 1
+    path: Assets/Scenes/KethrilVSEadric/Chapter4/KvES3Ch4.unity
+    guid: 23d8c7c2d270a664184e4c02f095d162
+  - enabled: 1
+    path: Assets/Scenes/KethrilVSEadric/Chapter4/KvES4Ch4.unity
+    guid: 1f11cb84dad46464fad5020f13db145a
   m_configObjects: {}
